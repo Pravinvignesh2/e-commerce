@@ -4,6 +4,7 @@ import HomePage from './HomePage';
 
 export default function Ecom()
 {
+<<<<<<< HEAD
   const [APIData, setAPIData] = useState(null);
   const [products, setProducts] = useState([]);
 
@@ -100,4 +101,7 @@ export default function Ecom()
       </div></>    
 
           )
+=======
+    return <h1>E-Commerce</h1>
+>>>>>>> 53996bf35eb7c64eba1023fe3c4e9cf890f4bf56
 }
