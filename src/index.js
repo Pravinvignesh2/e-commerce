@@ -11,8 +11,7 @@ import RouterPage from './ECommerce/RouterPage';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    
-
+      
     <BrowserRouter>
        {/* <HomePage></HomePage> */}
        <RouterPage></RouterPage>
