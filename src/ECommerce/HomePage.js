@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import AllProduct from './AllProduct';
 
-export default function HomePage()
+export default function HomePage(props)
 {
 
     return (
@@ -12,6 +12,7 @@ export default function HomePage()
                   <input type="text" className='form-control' placeholder="Search product" ></input>
                     <button class="btn">Search</button> 
                     <a href="/login" style={{float:"right"} }className="login-anchor">Login</a>
+                    <p>{props.name}</p>
 
                 </header>
                 {/* </div> */}

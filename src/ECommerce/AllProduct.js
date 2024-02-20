@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import HomePage from './HomePage';
 
-export default function AllProduct(){
+export default function AllProduct(props){
 
     const [AllProduct, setAllProduct] = useState([]);
 
@@ -18,12 +18,13 @@ export default function AllProduct(){
            .catch((error)=>{ console.log("error" + error)})
         },[]
     );
-
+console.log(props.name);
 
 return (
     <>
     <>
-       <HomePage></HomePage>
+       <HomePage name={props.name}></HomePage>
+       
     </>
     <div id="Allproduct">
        
