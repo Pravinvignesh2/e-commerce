@@ -34,10 +34,14 @@ return (
                  return (
                        <div id="ProductElement">
                             <div id="title"><p id="productname">{i.title}</p></div>
-                            <div> <img id="ecomimg" src={i.image} alt="hi"></img></div>
-                            <div> <h1>${i.price}</h1> </div>
+                            <div className="image-container">
+                                <img id="ecomimg" src={i.image} alt="Product" />
+                            </div>                           
+                            <div className="price"> <h1>${i.price}</h1> </div>
+                     
+                            {/* <div> <h1>${i.price}</h1> </div> */}
                             {/* <div><p>{i.description}</p></div> */}
-                     </div>
+                         </div>
                  )
                 }
             )

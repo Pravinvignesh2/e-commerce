@@ -10,9 +10,14 @@ import RouterPage from './ECommerce/RouterPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+<<<<<<< HEAD
   <React.StrictMode> 
     
 
+=======
+  <React.StrictMode>
+      
+>>>>>>> cad99bc7cb2f207adb5281e08a9230c5b1130ca3
     <BrowserRouter>
        {/* <HomePage></HomePage> */}
        <RouterPage></RouterPage>
