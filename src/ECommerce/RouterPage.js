@@ -13,7 +13,7 @@ import {Routes, Route} from 'react-router-dom';
 export default function RouterPage()
 {
     return (
-<<<<<<< HEAD
+
           <Routes>
                 <Route path="/AllProduct" element={<AllProduct></AllProduct>}></Route> 
                 <Route path="/" element={<Register></Register>}></Route>
@@ -24,7 +24,7 @@ export default function RouterPage()
                 <Route path="/AllProduct" element={<AllProduct></AllProduct>}></Route>
                 <Route path="/Login" element={<Login></Login>}></Route>
                 <Route path="/" element={<Login></Login>}></Route>
->>>>>>> cad99bc7cb2f207adb5281e08a9230c5b1130ca3
+
                 <Route path="/Ecom" element={<Ecom></Ecom>}></Route>
            </Routes>
     )

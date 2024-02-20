@@ -11,13 +11,13 @@ export default function HomePage(props)
                   
                   <input type="text" className='form-control' placeholder="Search product" ></input>
                     <button class="btn">Search</button> 
-<<<<<<< HEAD
+
                     <a href="/login" style={{float:"right"} }className="login-anchor">Login</a>
                     <p>{props.name}</p>
 =======
                     <Link to="/Login" style={{float:"right"} }className="login-anchor">Login/Register</Link>
                     <Link to="/Ecom" className='cart'>Cart</Link>
->>>>>>> cad99bc7cb2f207adb5281e08a9230c5b1130ca3
+
 
                 </header>
                 {/* </div> */}
