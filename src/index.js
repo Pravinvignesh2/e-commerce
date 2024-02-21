@@ -16,7 +16,7 @@ root.render(
 
   
       
-
+  <React.StrictMode>
     <BrowserRouter>
        {/* <HomePage></HomePage> */}
        <RouterPage></RouterPage>
