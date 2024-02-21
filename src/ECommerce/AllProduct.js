@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import {useLocation} from 'react';
 import axios from 'axios';
 import HomePage from './HomePage';
+import { Link } from 'react-router-dom';
 
 export default function AllProduct(props){
 
@@ -34,7 +35,9 @@ return (
         {
             AllProduct.map(
                 (i)=>{
-                 return (
+                 return (<>
+                    <Link to={`/product/${i.id}`}/>
+
                        <div id="ProductElement">
                             <div id="title"><p id="productname">{i.title}</p></div>
                             <div className="image-container">
@@ -45,7 +48,7 @@ return (
                             {/* <div> <h1>${i.price}</h1> </div> */}
                             {/* <div><p>{i.description}</p></div> */}
                          </div>
-                 )
+                         </>)
                 }
             )
         }
