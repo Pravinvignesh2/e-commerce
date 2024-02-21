@@ -395,3 +395,50 @@ footer{
   z-index: 1; /* Ensure price stays behind header and menu */
 
 }
+
+
+/* Product Detail */
+.detail-container{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.product-detail {
+  margin-top: 115px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  width: 50%;
+}
+
+.product-info {
+  text-align: center;
+}
+
+.product-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-image {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.product-description {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.product-price {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.loading-message {
+  font-size: 18px;
+  font-style: italic;
+  color: #888;
+}
