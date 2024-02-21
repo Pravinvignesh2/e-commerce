@@ -1,8 +1,16 @@
 import {Link} from 'react-router-dom';
 import AllProduct from './AllProduct';
+import { useLocation } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 export default function HomePage(props)
 {
+
+    // const location = useLocation();
+    
+
+    // const param1 = new URLSearchParams(location.search).get('param1');
+    // const param3 = new URLSearchParams(location.search).get('param3');
 
     return (
         <div id="HomePage">
@@ -12,10 +20,12 @@ export default function HomePage(props)
                   <input type="text" className='form-control' placeholder="Search product" ></input>
                     <button class="btn">Search</button> 
 
-                    <a href="/login" style={{float:"right"} }className="login-anchor">Login</a>
-                    <p>{props.name}</p>
-=======
-                    <Link to="/Login" style={{float:"right"} }className="login-anchor">Login/Register</Link>
+                    {/* <a href="/login" style={{float:"right"} }className="login-anchor">Login</a>
+                    <p>{props.name}</p> */}
+
+                    {/* <Link to="/Login" style={{float:"right"} }className="login-anchor">Login/Register</Link>
+                     */}
+                    {/* <div> <p>{param1}</p> </div>  */}
                     <Link to="/Ecom" className='cart'>Cart</Link>
 
 

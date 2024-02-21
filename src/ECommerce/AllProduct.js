@@ -1,10 +1,13 @@
 import {useState, useEffect} from 'react';
+import {useLocation} from 'react';
 import axios from 'axios';
 import HomePage from './HomePage';
 
 export default function AllProduct(props){
 
     const [AllProduct, setAllProduct] = useState([]);
+
+    
 
     useEffect(
         ()=>{
@@ -23,7 +26,7 @@ console.log(props.name);
 return (
     <>
     <>
-       <HomePage name={props.name}></HomePage>
+       <HomePage ></HomePage>
        
     </>
     <div id="Allproduct">

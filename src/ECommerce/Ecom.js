@@ -79,7 +79,7 @@ export default function Ecom()
 
     <>
     <>
-      {<HomePage></HomePage>}
+      <HomePage></HomePage>
     </>
     
     <div id="ecom">
