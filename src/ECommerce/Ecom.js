@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import {Link} from "react-router-dom";
 import axios from 'axios';
 import HomePage from './HomePage';
 
@@ -89,7 +90,7 @@ export default function Ecom()
         {products.map(
           (i) => {
             return (
-
+              <Link to={`/Allproduct/${i.id}`}>
               <div id="ecomelement">
                 <div id="imge"> <img id="ecomimg" src={i.image} alt="hi"></img></div>
                 <div id="description"> 
@@ -100,7 +101,7 @@ export default function Ecom()
                       
                  </div>
               </div>
-
+             </Link>
             );
           }
         )}
