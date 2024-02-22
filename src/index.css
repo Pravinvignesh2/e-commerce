@@ -82,22 +82,11 @@ h2 {
 
 /* Cart Styles */
 #ecom{
-<<<<<<< HEAD
-
   display:block;
-=======
-  display:flex;
->>>>>>> 99d2a91af5d3f1d3732ef906f16196c5f4431081
-  flex:wrap;
   height: 100%;
   width:70%;
   justify-content: center;
-<<<<<<< HEAD
   margin-top: 180px;
-
-=======
-  margin-top: 100px;
->>>>>>> 99d2a91af5d3f1d3732ef906f16196c5f4431081
 }
 
 #ecomelement{
