@@ -36,7 +36,7 @@ return (
             AllProduct.map(
                 (i)=>{
                  return (<>
-                    <Link to={`/product/${i.id}`}/>
+                    <Link to={`/Allproduct/${i.id}`}>
 
                        <div id="ProductElement">
                             <div id="title"><p id="productname">{i.title}</p></div>
@@ -48,6 +48,7 @@ return (
                             {/* <div> <h1>${i.price}</h1> </div> */}
                             {/* <div><p>{i.description}</p></div> */}
                          </div>
+                    </Link>
                          </>)
                 }
             )

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-
 import AllProduct from './AllProduct';
 import { useLocation } from 'react-router-dom';
 import {useNavigate, useParams} from 'react-router-dom';
+
 
 export default function HomePage(props)
 {
@@ -17,7 +17,8 @@ export default function HomePage(props)
         <div id="HomePage">
             {/* <div id="headerdiv"> */}
                <header>
-                  
+                    <Link to="/AllProduct"><p>AIMPP</p></Link>
+                 
                   <input type="text" className='form-control' placeholder="Search product" ></input>
                     <button class="btn">Search</button> 
 
@@ -36,7 +37,6 @@ export default function HomePage(props)
                             <li class="active"><Link to="/AllProduct">Home</Link></li>
                             <li><a href="#">Women’s</a></li>
                             <li><a href="#">Men’s</a></li>
-                            {/* <li><a href="./shop.html">Shop</a></li> */}
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="./product-details.html">Product Details</a></li>
