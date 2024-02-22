@@ -8,8 +8,6 @@ export default function HomePage(props)
 {
 
     // const location = useLocation();
-    
-
     // const param1 = new URLSearchParams(location.search).get('param1');
     // const param3 = new URLSearchParams(location.search).get('param3');
 
@@ -19,14 +17,14 @@ export default function HomePage(props)
                <header>
                     <Link to="/AllProduct"><p>AIMPP</p></Link>
                  
-                  <input type="text" className='form-control' placeholder="Search product" ></input>
-                    <button class="btn">Search</button> 
+                    <input type="text" className='form-control' placeholder="Search product" ></input>
+                    <button className="btn">Search</button> 
 
                     <Link to="/Login" style={{float:"right"} }className="login-anchor">Login</Link>
                     {/* <p>{props.name}</p> */}
 
                     {/* <Link to="/Login">login</Link> */}
-                    <Link to="/Ecom" className='cart'>Cart</Link>
+                    <Link to="/Ecom" className='cart'><i class="fa fa-shopping-cart fa-xl" aria-hidden="true"></i></Link>
 
 
                 </header>

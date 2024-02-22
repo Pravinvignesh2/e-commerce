@@ -309,6 +309,11 @@ header .form-control{
   top:5px;
   font-weight: 600;
   font-size: 1.2rem;
+  margin-left: 15px;
+}
+.fa-size{
+  height: 150%;
+  width: 150%;
 }
 
 /* Nav bar styles */
