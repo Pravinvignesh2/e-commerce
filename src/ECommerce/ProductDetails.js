@@ -35,10 +35,16 @@ export default function ProductDetail() {
             <p className="product-price">Price: ${product.price}</p>
             </div>
         ) : (
-            <p className="loading-message">Loading...</p>
+            // <p className="loading-message">Loading...</p>
+            <div class="loading">
+                <div class="loader"></div>
+            </div>
         )}
          <div class="text-center">
             <button class="btn btn-info my-3">Add to cart</button>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-info my-3">Buy Now</button>
         </div>
         </div>
        
