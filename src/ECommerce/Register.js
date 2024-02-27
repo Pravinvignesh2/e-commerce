@@ -1,48 +1,50 @@
-import React, { useState } from 'react';
-// import React from 'react';
-// import { useHistory, useNavigate } from 'react-router-dom';
+import React, { createContext } from 'react';
+import { useContext, useState } from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
+import Header from './Header';
+import context from './context';
+import contextCreate from './context';
+import { UserProvider } from './context';
+import AllProduct from './AllProduct';
+import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 export default function Register(){
 
+        
+      
+        const [formData, setFormData] = useContext(contextCreate);
+        const [username, setUserName] = useState(' ');
+        const [email, setEmail] = useState(' ');
+       
+        const userNameFun = (e)=>{
+            setUserName(e.target.value);
+        }
+        const userEmailFun = (e)=>{
+            setEmail(e.target.value);
+        }
     
-       //useHistory
-        // const [formData, setFormData] = useState({username:" ",email:" "});
-        // const history= useHistory();   //works like a Link tag but can pass values
-
-        // const handleInput = (e)=>{
-        //     setFormData({...formData,[e.target.name] : e.target.value});
-        // }
-
-        // const submit =(e)=>{
-        //     e.preventDefault();
-        //     history.push("/HomePage",formData);
-        // }
-
-        // const navigate = useNavigate();
-        const [formData, setFormData] = useState({username:" ",email:" "});
-
-        const handleInput = (e)=>{
-                setFormData({...formData,[e.target.name] : e.target.value});
+        const handleInput = ()=>{
+                setFormData({...formData,username,email});
              }
-
-        // const submit =(e)=>{
-        //              e.preventDefault();
-        //             navigate(`/HomePage?param1=${formData.username}&param3=${formData.email}`);
-                    
-        //  }     
+        
+        const onClick = ()=>{
+            handleInput(); 
+            
+        }
 
     return(
-
+        <>
         <form action="/AllProduct" id="form">
             <div className="form-group">
                 <label>username:</label>
-                <input type="text" className="form-control " name="username" placeholder="Enter Your Name" value={formData.username} onChange={handleInput} required></input>
+                <input type="text" className="form-control " name="username" placeholder="Enter Your Name" value={username} onChange={userNameFun} required></input>
             </div>
 
             <div className="form-group">
                 <label>Email:</label>
-                <input type="email" className="form-control" placeholder="Enter your Email id" name="email" value={formData.email} onChange={handleInput}></input>
+                <input type="email" className="form-control" placeholder="Enter your Email id" name="email" value={email} onChange={userEmailFun}></input>
             </div>
 
             <div className="form-group">
@@ -55,8 +57,14 @@ export default function Register(){
                 <input type="text" className="form-control" placeholder="Enter The Password"></input>
             </div>
 
-           <div className='btnn'> <button className="btn btn-info">Register</button></div>
+           <div className='btnn'><Link to="/AllProduct"> <button type="button" onClick={onClick} className="btn btn-info">Register</button></Link></div>
+
+           
            
         </form>
+
+        
+
+        </>
     )
 }

@@ -1,14 +1,10 @@
 import { Link } from 'react-router-dom';
 import AllProduct from './AllProduct';
-import { useLocation } from 'react-router-dom';
-import {useNavigate, useParams} from 'react-router-dom';
-import Header from "./Header";
+import Header from './Header';
 
 export default function HomePage(props)
 {
-    // const location = useLocation();
-    // const param1 = new URLSearchParams(location.search).get('param1');
-    // const param3 = new URLSearchParams(location.search).get('param3');
+    
 
     return (
         <>
