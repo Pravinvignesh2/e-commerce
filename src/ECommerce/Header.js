@@ -43,9 +43,9 @@ export default function Header()
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
                                     <Link to="/Ecom" class="dropdown-item">Cart</Link>
-                                    <a href="chackout.html" class="dropdown-item">Chackout</a>
-                                    <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                    <a href="404.html" class="dropdown-item">404 Page</a>
+                                    <a href="#" class="dropdown-item">Checkout</a>
+                                    <a href="#" class="dropdown-item">Testimonial</a>
+                                    <a href="#" class="dropdown-item">404 Page</a>
                                 </div>
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>

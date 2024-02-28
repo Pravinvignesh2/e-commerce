@@ -3,11 +3,12 @@ import {useLocation} from 'react';
 import axios from 'axios';
 import HomePage from './HomePage';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 export default function AllProduct(props){
 
     const [AllProduct, setAllProduct] = useState([]);
-
+    const [categories, setCategories] = useState([]);
     
 
     useEffect(
@@ -19,7 +20,14 @@ export default function AllProduct(props){
                    setAllProduct(response.data);
             }
            )
-           .catch((error)=>{ console.log("error" + error)})
+           .catch((error)=>{ console.log("error" + error)});
+           
+           fetch('https://fakestoreapi.com/products/categories')
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+                setCategories(json);
+            });
         },[]
     );
 console.log(props.name);
@@ -38,21 +46,39 @@ return (
                  return (<>
                     <Link to={`/Allproduct/${i.id}`}>
 
-                       <div id="ProductElement">
+                       {/* <div id="ProductElement">
                             <div id="title"><p id="productname">{i.title}</p></div>
                             <div className="image-container">
                                 <img id="ecomimg" src={i.image} alt="Product" />
                             </div>                           
                             <div className="price"> <h1>${i.price}</h1> </div>
                      
-                            {/* <div> <h1>${i.price}</h1> </div> */}
-                            {/* <div><p>{i.description}</p></div> */}
-                         </div>
+                         </div> */}
+                         <div class="col-md-6 col-lg-4 col-xl-3 border border-secondary" id="ProductElement">
+                                <div class="rounded position-relative fruite-item">
+                                    <div class="fruite-img image-container " id="imge1">
+                                        <img src={i.image} class="img-fluid w-100 rounded-top" id="ecomimg" alt=""/>
+                                    </div>
+                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style={{top: "10px", left: "10px"}}>
+                                    {categories.includes(i.category) ? i.category : 'Other'}
+                                    </div>
+                                    <div class="p-4  border-top-0 rounded-bottom">
+                                        <h4 id="title">{i.title}</h4>
+                                        {/* <p>{i.description}</p> */}
+                                        <div class="d-flex justify-content-between flex-lg-wrap" id="price-bottom">
+                                            <p  class="price text-dark fs-5 fw-bold mb-0">${i.price}</p>
+                                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary" ><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </Link>
                          </>)
                 }
             )
         }
-    </div></>
+    </div>
+    <Footer></Footer>
+    </>
 )
 }
