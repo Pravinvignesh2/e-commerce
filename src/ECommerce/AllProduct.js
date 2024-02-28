@@ -3,6 +3,7 @@ import {useLocation} from 'react';
 import axios from 'axios';
 import HomePage from './HomePage';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 export default function AllProduct(props){
 
@@ -53,6 +54,8 @@ return (
                 }
             )
         }
-    </div></>
+    </div>
+    <Footer></Footer>
+    </>
 )
 }
