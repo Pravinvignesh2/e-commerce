@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import HomePage from './HomePage';
+import Footer from './Footer';
 
 export default function ProductDetail() {
     const { productId } = useParams();
@@ -61,7 +62,7 @@ export default function ProductDetail() {
                     </div>
                 </div>
             </div>
-            /var/folders/0m/v6__mlcn3m79ncx9tvhscrvc0000gp/T/com.apple.useractivityd/shared-pasteboard/items/7BD08654-86A4-4508-876D-8F386F84DC28/6829dd9c2fcc6801253faecefd1b14560c92e033.rtfd
+            <Footer></Footer>
         </>
     );
 }

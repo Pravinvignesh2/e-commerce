@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import HomePage from './HomePage';
+import Footer from './Footer';
 
 export default function Ecom()
 {
@@ -283,7 +284,7 @@ export default function Ecom()
                     </div>
                 </div>
             
- 
+              <Footer></Footer>
  </>          
          
 

@@ -192,10 +192,11 @@ header .form-control{
   padding: 1.2rem;
 }
 
-.btn{
-  /* background-color: aqua; */
+/* .btn{
+  
   height: 41px;
-}
+} */
+
 .btn:hover{
   box-shadow: 0px 0px 8px aqua;
   background-color: aqua;
