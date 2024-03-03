@@ -336,6 +336,81 @@ Link{
   text-decoration: none;
 }
 
+/* Paginate */
+
+/* #paginate{
+  background-color: #000;
+  margin-top: 50px;
+  display: flex;
+}
+
+.pagination-buttons {
+  position: fixed;
+  bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 40px); 
+   left: 20px;
+  right: 20px; 
+}  
+
+/* .paginate-button {
+  
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+} */
+
+#AllProduct{
+  display:flex;
+  flex-wrap: wrap;
+}
+#paginateDiv{
+  display:flex;
+  flex-wrap: nowrap;
+}
+
+#paginateDiv button{
+ 
+  position:fixed;
+  margin-top: 300px;
+  height: 40px;
+  width:50px;
+  border-radius: 50px;
+  
+}
+
+#paginate-container{
+    
+    display:flex;
+    gap:7px;
+    justify-content: center;
+}
+
+#loopButton{
+  border-radius: 50%;
+  background-color: transparent;
+  opacity: 0.5;
+}
+
+/* <i class="a-icon a-icon-next"><span class="a-icon-alt">Next page</span></i> */
+
+#leftButton {
+  left: 20px; /* Adjust the distance from the left side */
+    
+}
+
+#rightButton {
+  right: 20px; /* Adjust the distance from the right side */
+ 
+}
+
+
 
 /* Footer */
 footer{

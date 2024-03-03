@@ -4,6 +4,7 @@ import axios from 'axios';
 import HomePage from './HomePage';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 export default function AllProduct(props){
 
@@ -16,7 +17,7 @@ export default function AllProduct(props){
            axios.get('https://fakestoreapi.com/products')
            .then(
             (response)=>{
-                   console.log(response);
+                //    console.log(response);
                    setAllProduct(response.data);
             }
            )
@@ -25,12 +26,37 @@ export default function AllProduct(props){
            fetch('https://fakestoreapi.com/products/categories')
             .then(response => response.json())
             .then(json => {
-                console.log(json);
+                // console.log(json);
                 setCategories(json);
             });
         },[]
     );
-console.log(props.name);
+
+
+const productsPerPage = 5;
+const [currentPage, setCurrentPage] = useState(1);
+const [currentPageProducts , setCurrentPageProducts] = useState([]);
+
+useEffect(
+    ()=>{
+
+        const lastIndex = currentPage * productsPerPage;
+        const firstIndex = lastIndex - productsPerPage;
+
+        const currentProducts = AllProduct.slice(firstIndex, lastIndex);
+
+        setCurrentPageProducts(currentProducts);
+    },[currentPage,AllProduct]
+)
+
+// console.log( "current products"+ JSON.stringify(currentPageProducts));
+
+useEffect(() => {
+    console.log("AllProduct:", AllProduct);
+    console.log("currentPageProducts:", currentPageProducts);
+}, [AllProduct, currentPageProducts]);
+
+const paginate = page => setCurrentPage(page);
 
 return (
     <>
@@ -38,12 +64,19 @@ return (
        <HomePage ></HomePage>
        
     </>
+    { AllProduct.length>0 && currentPageProducts.length>0 ? (
+        <>
+    
+    <div id="paginateDiv">
+    <button   id="leftButton" onClick={()=> setCurrentPage(currentPage-1)}  disabled={currentPage === 1}> L </button>
+
     <div id="Allproduct">
        
         {
-            AllProduct.map(
+            currentPageProducts.map(
                 (i)=>{
-                 return (<>
+                 return (
+                 <>
                     <Link to={`/Allproduct/${i.id}`}>
 
                        {/* <div id="ProductElement">
@@ -72,12 +105,43 @@ return (
                                     </div>
                                 </div>
                             </div>
+                            
                     </Link>
+
+                
+                
                          </>)
                 }
             )
         }
     </div>
+    <button  id="rightButton" onClick={()=> setCurrentPage(currentPage+1)}  disabled={currentPage===Math.ceil(AllProduct.length / productsPerPage)}>R</button> 
+    </div>
+        
+    </>              
+    ):null
+    }
+
+    { AllProduct.length>0 && currentPageProducts.length>0 &&
+     
+          
+          <div id="paginate-container">
+              
+            
+               
+               {   (Array.from({ length: Math.ceil(AllProduct.length / productsPerPage) }, (_, index) => (
+                  
+                     <div id="loppButtonDiv">  <button id="loopButton" onClick={() => paginate(index + 1)}>{index + 1}</button></div>
+                  
+            )))}
+
+           
+          </div>
+     
+   }
+     {/* </>
+    ):null
+    } */}
     <Footer></Footer>
     </>
 )
