@@ -4,7 +4,12 @@ import axios from 'axios';
 import HomePage from './HomePage';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
+
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+
+import StarRating from './StarRating';
+
+
 
 export default function AllProduct(props){
 
@@ -78,15 +83,6 @@ return (
                  return (
                  <>
                     <Link to={`/Allproduct/${i.id}`}>
-
-                       {/* <div id="ProductElement">
-                            <div id="title"><p id="productname">{i.title}</p></div>
-                            <div className="image-container">
-                                <img id="ecomimg" src={i.image} alt="Product" />
-                            </div>                           
-                            <div className="price"> <h1>${i.price}</h1> </div>
-                     
-                         </div> */}
                          <div class="col-md-6 col-lg-4 col-xl-3 border border-secondary" id="ProductElement">
                                 <div class="rounded position-relative fruite-item">
                                     <div class="fruite-img image-container " id="imge1">
@@ -97,6 +93,10 @@ return (
                                     </div>
                                     <div class="p-4  border-top-0 rounded-bottom">
                                         <h4 id="title">{i.title}</h4>
+                                        <div className="d-flex mb-4">
+                                                <StarRating rating={i.rating.rate} />
+                                                <span className="ms-2">{i.rating.count} reviews</span>
+                                            </div>
                                         {/* <p>{i.description}</p> */}
                                         <div class="d-flex justify-content-between flex-lg-wrap" id="price-bottom">
                                             <p  class="price text-dark fs-5 fw-bold mb-0">${i.price}</p>
