@@ -7,8 +7,8 @@ import Header from "./Header";
 import {Routes, Route} from 'react-router-dom';
 import ProductDetail from "./ProductDetails";
 import AllProduct1 from "./AllProductsExample";
-
-
+import Contact from "./Contact";
+import CheckoutForm from "./CheckoutForm";
 
 export default function RouterPage()
 {
@@ -18,9 +18,9 @@ export default function RouterPage()
        
 
                 {/* <Route path="/" element={<Register></Register>}></Route> */}
-        
+                <Route path="/Contact" element={<Contact></Contact>}></Route>
                 <Route path="/" element={<AllProduct></AllProduct>}></Route>
-                 {/* <Route path="/AllProduct1" element={<AllProduct1></AllProduct1>}></Route> */}
+                 <Route path="/CheckoutForm" element={<CheckoutForm></CheckoutForm>}></Route>
                  <Route path="/AllProduct" element={<AllProduct></AllProduct>}></Route>
                 <Route path="/Login" element={<Login></Login>}></Route>
                 {/* <Route path="/" element={<Login></Login>}></Route> */}
