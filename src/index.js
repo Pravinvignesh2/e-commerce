@@ -5,8 +5,9 @@ import { BrowserRouter} from 'react-router-dom';
 import RouterPage from './ECommerce/RouterPage';
 import { UserProvider } from './ECommerce/context';
 import { Route , Router} from 'react-router-dom';
-import Register from './ECommerce/Register';
-import Header from './ECommerce/Header';
+// import Register from './ECommerce/Register';
+// import Header from './ECommerce/Header';
+// import Ecom from './ECommerce/Ecom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

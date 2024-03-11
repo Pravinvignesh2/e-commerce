@@ -11,7 +11,7 @@ export default function Header()
 {
 
     const [formData, setFormData] = useContext(contextCreate);
-    console.log("username" + JSON.stringify(formData));
+    
     return (
         <>
         {/* Navbar start */}
@@ -25,6 +25,8 @@ export default function Header()
 
 
                 {formData.username!=" " ?(<p style={{color:"yellow", filter:"drop-Shadow(0px 0px 10px blue)"}}>{"Welcome, Mr. " + formData.username}</p>) : null}
+                {/* {formData.userId!=" " ?(<p style={{color:"yellow", filter:"drop-Shadow(0px 0px 10px blue)"}}>{"Welcome, Mr. " + formData.userId}</p>) : null} */}
+
 
                     <div class="top-link pe-2">
                         <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>

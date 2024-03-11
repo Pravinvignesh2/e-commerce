@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { useContext, useState } from 'react';
+import { useContext, useState , useEffect } from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 import Header from './Header';
 import context from './context';
@@ -8,6 +8,9 @@ import { UserProvider } from './context';
 import AllProduct from './AllProduct';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { FaRunning, FaWindows } from 'react-icons/fa';
+
 
 
 export default function Register(){
@@ -17,6 +20,26 @@ export default function Register(){
         const [formData, setFormData] = useContext(contextCreate);
         const [username, setUserName] = useState(' ');
         const [email, setEmail] = useState(' ');
+        const [userId, setUserId] = useState(null);
+
+        const [users, setUsers] = useState([]);
+
+        const navigate = useNavigate();
+
+        
+   
+        useEffect(
+            ()=>{
+
+                axios.get('https://fakestoreapi.com/users')
+                .then(
+                    (response) =>{
+                        setUsers(response.data);
+                    }
+                    )
+                 .catch((err) =>{ console.log(err)})   
+            },[]
+        )
        
         const userNameFun = (e)=>{
             setUserName(e.target.value);
@@ -24,19 +47,81 @@ export default function Register(){
         const userEmailFun = (e)=>{
             setEmail(e.target.value);
         }
-    
-        const handleInput = ()=>{
-                setFormData({...formData,username,email});
-             }
-        
-        const onClick = ()=>{
-            handleInput(); 
+
+        // const Run = ()=>{
             
+            
+        //     console.log("USERId " + userId);
+        //    setFormData({...formData, username , email, userId});             
+        //     navigate("/AllProduct");
+        // }
+
+        // useEffect(() => {
+
+        //    const Run = ()=>{
+            
+            
+        //     console.log("USERId " + userId);
+        //     setFormData({...formData, username , email, userId});             
+        //     navigate("/AllProduct");
+        //    }
+
+        //    if( userId !==null || userId !== undefined || userId !=="  "){
+        //       Run();
+        //     }
+        //     console.log("UserId state after settinggggggg:", userId);
+        // }, [userId]);
+    
+        
+        // const handleInput = (e) => {
+        //     e.preventDefault();
+
+            
+        //     const existingUser = users.find((user) => user.email === email);
+        //     if (existingUser) {
+        //         console.log("IDDDDDDDDD " + existingUser.id);
+        //          setUserId(existingUser.id);
+        //         console.log("UserId state after setting:", userId);
+                
+        //     } else {
+        //         console.log("User not found");
+        //         // Handle the case when the user is not found, such as showing an error message.
+        //     }
+        
+
+        
+        // }
+
+    const handleInput = (e) => {
+    e.preventDefault();
+
+    const existingUser = users.find((user) => user.email === email);
+    if (existingUser) {
+        console.log("IDDDDDDDDD " + existingUser.id);
+        setUserId(existingUser.id);
+        setUserName(existingUser.username);
+
+        
+    } else {
+        console.log("User not found");
+        
+    }
+}
+
+useEffect(() => {
+        if (userId !== null) {
+            console.log("USERId " + userId);
+            setFormData({ ...formData, username, email, userId });
+            navigate("/AllProduct");
         }
+    }, [userId]);
+
+        
+        
 
     return(
         <>
-        <form action="/AllProduct" id="form">
+        <form action="/AllProduct" id="form" onSubmit={handleInput}>
             <div className="form-group">
                 <label>username:</label>
                 <input type="text" className="form-control " name="username" placeholder="Enter Your Name" value={username} onChange={userNameFun} required></input>
@@ -57,7 +142,7 @@ export default function Register(){
                 <input type="text" className="form-control" placeholder="Enter The Password"></input>
             </div>
 
-           <div className='btnn'><Link to="/AllProduct"> <button type="button" onClick={onClick} className="btn btn-info">Register</button></Link></div>
+           <div className='btnn'> <button type="submit"  className="btn btn-info">Register</button></div>
 
            
            
