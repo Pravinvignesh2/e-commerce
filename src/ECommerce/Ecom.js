@@ -9,7 +9,7 @@ import { useContext } from 'react';
 export default function Ecom()
 {
  
-  const [APIData, setAPIData] = useState([ ]);
+  const [APIData, setAPIData] = useState([]);
   const [products, setProducts] = useState([]);
    const [products1, setProducts1] = useState([]);
 
@@ -17,7 +17,8 @@ export default function Ecom()
  
 
   
-    console.log("formdataaaaa "+ JSON.stringify(formData));
+    console.log("formdataaaaa "+ JSON.stringify(APIData));
+    //console.log("lengthhhhh "+ Object.keys(formData).length);
 
   useEffect(
      ()=>{
@@ -28,8 +29,8 @@ export default function Ecom()
         axios.get(`https://fakestoreapi.com/carts/user/${formData.userId}`)
       .then(
         (response) => {
-          // console.log(response.data);
-          setAPIData(response.data);
+          console.log(response.data);
+          setAPIData([response.data[0]]);
           
         }
       )
@@ -37,11 +38,12 @@ export default function Ecom()
 
       }
       if(Object.keys(formData).length >0){
-      api();
+          api();
       }
     
       
-    },[formData, formData.userId]
+    // },[formData, formData.userId]
+  },[]
    )
 
  
@@ -77,44 +79,44 @@ export default function Ecom()
 
            setProducts(productData.flat());
 
-           const productFun = async()=>{
+          //  const productFun = async()=>{
            
-            if(products !==null && products.length>0 ){
+          //   if(products !==null && products.length>0 ){
        
-               const unique = Array.from(new Set( products.map( product => JSON.stringify(product))))
-               .map( json => JSON.parse(json));
+          //      const unique = Array.from(new Set( products.map( product => JSON.stringify(product))))
+          //      .map( json => JSON.parse(json));
 
-               console.log(unique);
+          //      console.log(unique);
 
-           setProducts1(unique);
-           }
-          }
+          //  setProducts1(unique);
+          //  }
+          // }
 
-           productFun();
+          //  productFun();
 
-          //  const initialQuantities = products1.flat().reduce((acc, curr) => {
-          //   acc[curr.id] = 1;
-          //   return acc;
-          // }, {});
-          // console.log("itnitialllll  "+JSON.stringify(initialQuantities))
-          // setQuantity(initialQuantities);
+           const initialQuantities = productData.flat().reduce((acc, curr) => {
+            acc[curr.id] = 1;
+            return acc;
+          }, {});
+          console.log("itnitialllll  "+JSON.stringify(initialQuantities))
+          setQuantity(initialQuantities);
 
-          // const initialPrice = products1.flat().reduce(
-          //   (acc,curr) =>{
-          //     acc[curr.id] = parseFloat(curr.price.toFixed(2));
-          //     return acc;
-          //   },{}
-          // )
+          const initialPrice = productData.flat().reduce(
+            (acc,curr) =>{
+              acc[curr.id] = parseFloat(curr.price.toFixed(2));
+              return acc;
+            },{}
+          )
 
-          // const totalPrice = products1.flat().reduce(
-          //   (acc,curr)=>{
-          //        acc+=curr.price;
-          //        return acc;
-          //   },0
-          // )
-          // setTotal(totalPrice);
-          // setPrice(initialPrice);
-          // setInitPrice({...initialPrice});
+          const totalPrice = productData.flat().reduce(
+            (acc,curr)=>{
+                 acc+=curr.price;
+                 return acc;
+            },0
+          )
+          setTotal(totalPrice);
+          setPrice(initialPrice);
+          setInitPrice({...initialPrice});
              
         }
         fetchProducts();
@@ -125,36 +127,7 @@ export default function Ecom()
     },[APIData]
   )
 
-  useEffect(
-    ()=>{
-
-      
-
-      const initialQuantities = products1.flat().reduce((acc, curr) => {
-        acc[curr.id] = 1;
-        return acc;
-      }, {});
-      console.log("itnitialllll  "+JSON.stringify(initialQuantities))
-      setQuantity(initialQuantities);
-
-      const initialPrice = products1.flat().reduce(
-        (acc,curr) =>{
-          acc[curr.id] = parseFloat(curr.price.toFixed(2));
-          return acc;
-        },{}
-      )
-
-      const totalPrice = products1.flat().reduce(
-        (acc,curr)=>{
-             acc+=curr.price;
-             return acc;
-        },0
-      )
-      setTotal(totalPrice);
-      setPrice(initialPrice);
-      setInitPrice({...initialPrice});
-    },[products1]
-  )
+  
   
   const [quantity, setQuantity] = useState({});
   const [price,setPrice] = useState({})
@@ -218,6 +191,7 @@ export default function Ecom()
           
 
     // console.log("init price" + JSON.stringify(initPrice));
+    console.log("products1111111 "+JSON.stringify(products))
 
 
   return(
@@ -250,9 +224,10 @@ export default function Ecom()
                 </thead>
                 <tbody>
 
-                        
-                   {  products1?   (
-                          products1.map(
+                    
+                   {  products?   (
+                     
+                          products.map(
                             (i)=>{
 
                       return(      
