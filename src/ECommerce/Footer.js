@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Footer(){
 
 
@@ -11,8 +13,8 @@ export default function Footer(){
                     <div class="row g-4">
                         <div class="col-lg-3">
                             <a href="#">
-                                <h1 class="text-primary mb-0">Fruitables</h1>
-                                <p class="text-secondary mb-0">Fresh products</p>
+                                <h1 class="text-primary mb-0">MAPI Ecom</h1>
+                                <p class="text-secondary mb-0">products</p>
                             </a>
                         </div>
                         <div class="col-lg-6">
@@ -33,18 +35,18 @@ export default function Footer(){
                 </div>
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
-                        <div class="footer-item">
+                        {/* <div class="footer-item">
                             <h4 class="text-light mb-3">Why People Like us!</h4>
                             <p class="mb-4">typesetting, remaining essentially unchanged. It was 
                                 popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
                             <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
-                        </div>
+                        </div> */}
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="d-flex flex-column text-start footer-item">
                             <h4 class="text-light mb-3">Shop Info</h4>
                             <a class="btn-link" href="">About Us</a>
-                            <a class="btn-link" href="">Contact Us</a>
+                            <Link to="/Contact" class="btn-link" href="">Contact Us</Link>
                             <a class="btn-link" href="">Privacy Policy</a>
                             <a class="btn-link" href="">Terms & Condition</a>
                             <a class="btn-link" href="">Return Policy</a>

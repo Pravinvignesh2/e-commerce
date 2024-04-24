@@ -5,6 +5,8 @@ import { BrowserRouter} from 'react-router-dom';
 import RouterPage from './ECommerce/RouterPage';
 import { UserProvider } from './ECommerce/context';
 import { Route , Router} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './ECommerce/store';
 // import Register from './ECommerce/Register';
 // import Header from './ECommerce/Header';
 // import Ecom from './ECommerce/Ecom';
@@ -17,14 +19,14 @@ root.render(
       
 
   <React.StrictMode>
-    <UserProvider>
+    <Provider store={ store }>
               
     
     <BrowserRouter>
        <RouterPage></RouterPage>
        
     </BrowserRouter>
-    </UserProvider>
+    </Provider>
 
     
     {/* <UserProvider>

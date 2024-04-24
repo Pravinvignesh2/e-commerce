@@ -5,6 +5,12 @@ import HomePage from './HomePage';
 import Footer from './Footer';
 import contextCreate from './context';
 import { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { id, count } from './slice';
+
+
+
+
 
 export default function Ecom()
 {
@@ -13,7 +19,9 @@ export default function Ecom()
   const [products, setProducts] = useState([]);
    const [products1, setProducts1] = useState([]);
 
-  const [formData, setFormData] = useContext(contextCreate);
+  // const [formData, setFormData] = useContext(contextCreate);
+  const ID = useSelector((s)=> s.id.value);
+  const dispatch=useDispatch();
  
 
   
@@ -26,10 +34,10 @@ export default function Ecom()
       
       const api = async ()=>{
         
-        axios.get(`https://fakestoreapi.com/carts/user/${formData.userId}`)
+        axios.get(`https://fakestoreapi.com/carts/user/${ID}`)
       .then(
         (response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setAPIData([response.data[0]]);
           
         }
@@ -37,7 +45,8 @@ export default function Ecom()
       .catch(()=>{console.log("error")})
 
       }
-      if(Object.keys(formData).length >0){
+      // Object.keys(formData).length >0
+      if( ID ){
           api();
       }
     
@@ -79,20 +88,7 @@ export default function Ecom()
 
            setProducts(productData.flat());
 
-          //  const productFun = async()=>{
-           
-          //   if(products !==null && products.length>0 ){
-       
-          //      const unique = Array.from(new Set( products.map( product => JSON.stringify(product))))
-          //      .map( json => JSON.parse(json));
-
-          //      console.log(unique);
-
-          //  setProducts1(unique);
-          //  }
-          // }
-
-          //  productFun();
+          
 
            const initialQuantities = productData.flat().reduce((acc, curr) => {
             acc[curr.id] = 1;
@@ -191,7 +187,18 @@ export default function Ecom()
           
 
     // console.log("init price" + JSON.stringify(initPrice));
-    console.log("products1111111 "+JSON.stringify(products))
+    // console.log("products1111111 "+JSON.stringify(products))
+    console.log("products   ",products);
+
+    useEffect(
+      ()=>{
+        if( products.length>0 ){
+
+          console.log("products   ",products);
+          dispatch(count(products.length))
+        }
+      },[ products ]
+    )
 
 
   return(
@@ -292,8 +299,8 @@ export default function Ecom()
 
 
 <div class="mt-5" styel={{marginTop:"10px" , backgroundColor:"grey"}}>
-                    <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code"/>
-                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+                    {/* <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code"/> */}
+                    {/* <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button> */}
                 </div>
                 <div class="row g-4 justify-content-end">
                     <div class="col-8"></div>

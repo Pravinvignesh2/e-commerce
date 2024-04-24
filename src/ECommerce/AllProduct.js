@@ -65,7 +65,7 @@ export default function AllProduct(props) {
     return (
         <>
             <HomePage />
-            <div className="container-fluid" style={{ marginTop: '160px' }}>
+            <div className="container-fluid" style={{ marginTop: '190px' }}>
                 <div className="row">
                     <div className="col-md-3 filter-options">
                         <div>
