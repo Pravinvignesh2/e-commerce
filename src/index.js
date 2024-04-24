@@ -13,26 +13,14 @@ import store from './ECommerce/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
-
- 
-      
-
+  
   <React.StrictMode>
     <Provider store={ store }>
               
-    
     <BrowserRouter>
        <RouterPage></RouterPage>
-       
     </BrowserRouter>
     </Provider>
 
-    
-    {/* <UserProvider>
-              <Header />
-              <Register></Register>
-    </UserProvider> */}
-      
   </React.StrictMode>
 );

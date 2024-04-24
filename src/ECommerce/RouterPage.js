@@ -9,6 +9,7 @@ import ProductDetail from "./ProductDetails";
 import AllProduct1 from "./AllProductsExample";
 import Contact from "./Contact";
 import CheckoutForm from "./CheckoutForm";
+import Payment from "./Payment";
 
 export default function RouterPage()
 {
@@ -16,7 +17,7 @@ export default function RouterPage()
           <Routes>
 
        
-
+                  <Route path='/Payment' element={<Payment></Payment>}></Route>
                 {/* <Route path="/" element={<Register></Register>}></Route> */}
                 <Route path="/Contact" element={<Contact></Contact>}></Route>
                 <Route path="/" element={<AllProduct></AllProduct>}></Route>
