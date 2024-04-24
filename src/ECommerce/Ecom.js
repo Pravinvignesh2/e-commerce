@@ -3,21 +3,16 @@ import {Link} from "react-router-dom";
 import axios from 'axios';
 import HomePage from './HomePage';
 import Footer from './Footer';
-import contextCreate from './context';
-import { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { id, count } from './slice';
-
-
-
-
+import { id, count , amount} from './slice';
+import Payment from './Payment';
 
 export default function Ecom()
 {
  
   const [APIData, setAPIData] = useState([]);
   const [products, setProducts] = useState([]);
-   const [products1, setProducts1] = useState([]);
+  const [products1, setProducts1] = useState([]); 
 
   // const [formData, setFormData] = useContext(contextCreate);
   const ID = useSelector((s)=> s.id.value);
@@ -54,8 +49,6 @@ export default function Ecom()
     // },[formData, formData.userId]
   },[]
    )
-
- 
 
   useEffect(
     ()=>{
@@ -134,11 +127,19 @@ export default function Ecom()
   // console.log("total "+ JSON.stringify(total)) 
   // console.log("initprice "+ JSON.stringify(initPrice))
 
+  useEffect(
+    ()=>{
+      dispatch(amount(total))
+    },[total]
+  );
+
   const totalFunctionAdd = (i)=>{
+       
        return setTotal(total+ initPrice[i]);
   }
 
   const totalFunctionSub = (i)=>{
+       
        return setTotal(total - initPrice[i]);
   }
  
@@ -322,13 +323,13 @@ export default function Ecom()
                             </div>
                             <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                                 <h5 class="mb-0 ps-4 me-4">Total</h5>
-                                <p class="mb-0 pe-4">${parseFloat(total + 3).toFixed(2)}</p>
+                                <p class="mb-0 pe-4">${parseFloat(total ).toFixed(2)}</p>
+                                
                             </div>
-                            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
+                            <Link to="/Payment" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</Link>
                         </div>
                     </div>
                 </div>
-            
               <Footer></Footer>
  </>          
          

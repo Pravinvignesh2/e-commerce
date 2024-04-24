@@ -41,9 +41,24 @@ const countOfEcom= createSlice({
     }
 });
 
+const amount1= createSlice({
+
+    name:'amount',
+    initialState:{
+        value:0,
+    },
+    reducers:{
+        amount:(state,action)=>{
+            state.value=action.payload;
+        }
+    }
+})
+
 export const {namebar}=slice.actions;
 export const {id}=idSlice.actions;
 export const {count}=countOfEcom.actions;
+export const {amount}=amount1.actions;
 export const nameReducer=slice.reducer;
 export const idReducer=idSlice.reducer;
 export const countReducer=countOfEcom.reducer;
+export const amountReducer=amount1.reducer;

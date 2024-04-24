@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Header from './Header';
+import { Link } from 'react-router-dom';
 
 export default function CheckoutForm() {
   return (
@@ -228,7 +229,7 @@ export default function CheckoutForm() {
                                 </div>
                             </div>
                             <div class="row g-4 text-center align-items-center justify-content-center pt-4">
-                                <button type="button" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</button>
+                                <Link to="/Payment" type="button" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Place Order</Link>
                             </div>
                         </div>
                     </div>

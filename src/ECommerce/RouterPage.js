@@ -17,7 +17,7 @@ export default function RouterPage()
           <Routes>
 
        
-                  <Route path='/Payment' element={<Payment></Payment>}></Route>
+                <Route path='/Payment' element={<Payment></Payment>}></Route>
                 {/* <Route path="/" element={<Register></Register>}></Route> */}
                 <Route path="/Contact" element={<Contact></Contact>}></Route>
                 <Route path="/" element={<AllProduct></AllProduct>}></Route>

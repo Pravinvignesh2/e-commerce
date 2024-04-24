@@ -14,7 +14,7 @@ export default function Footer(){
                         <div class="col-lg-3">
                             <a href="#">
                                 <h1 class="text-primary mb-0">MAPI Ecom</h1>
-                                <p class="text-secondary mb-0">products</p>
+                                <p class="text-secondary mb-0">Products</p>
                             </a>
                         </div>
                         <div class="col-lg-6">
