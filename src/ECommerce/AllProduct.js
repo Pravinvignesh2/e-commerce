@@ -37,6 +37,7 @@ export default function AllProduct(props) {
 
     const paginate = page => setCurrentPage(page);
 
+
     // Filter products by category
     const filterByCategory = (category) => {
         if (category === 'All') {
@@ -54,8 +55,7 @@ export default function AllProduct(props) {
         setFilteredProducts(filtered);
         setCurrentPage(1); // Reset current page when filters change
     };
-
-    // Filter products by maximum price
+     
     const filterByPrice = (maxPrice) => {
         const filtered = allProducts.filter(product => product.price <= maxPrice);
         setFilteredProducts(filtered);
@@ -65,7 +65,7 @@ export default function AllProduct(props) {
     return (
         <>
             <HomePage />
-            <div className="container-fluid" style={{ marginTop: '160px' }}>
+            <div className="container-fluid" style={{ marginTop: '190px' }}>
                 <div className="row">
                     <div className="col-md-3 filter-options">
                         <div>
@@ -132,4 +132,5 @@ export default function AllProduct(props) {
             <Footer />
         </>
     );
+    
 }

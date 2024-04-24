@@ -3,35 +3,57 @@ import {Link} from "react-router-dom";
 import axios from 'axios';
 import HomePage from './HomePage';
 import Footer from './Footer';
+import contextCreate from './context';
+import { useContext } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { id, count } from './slice';
+
+
+
+
 
 export default function Ecom()
 {
  
   const [APIData, setAPIData] = useState([]);
   const [products, setProducts] = useState([]);
+   const [products1, setProducts1] = useState([]);
+
+  // const [formData, setFormData] = useContext(contextCreate);
+  const ID = useSelector((s)=> s.id.value);
+  const dispatch=useDispatch();
  
+
+  
+    console.log("formdataaaaa "+ JSON.stringify(APIData));
+    //console.log("lengthhhhh "+ Object.keys(formData).length);
 
   useEffect(
      ()=>{
       
+      
       const api = async ()=>{
         
-        axios.get('https://fakestoreapi.com/carts/user/3')
+        axios.get(`https://fakestoreapi.com/carts/user/${ID}`)
       .then(
         (response) => {
           // console.log(response.data);
-          setAPIData(response.data);
+          setAPIData([response.data[0]]);
           
         }
       )
       .catch(()=>{console.log("error")})
 
       }
-      api();
-    },[]
-     
+      // Object.keys(formData).length >0
+      if( ID ){
+          api();
+      }
     
-    )
+      
+    // },[formData, formData.userId]
+  },[]
+   )
 
  
 
@@ -62,13 +84,17 @@ export default function Ecom()
                )
                    );
             
-            // console.log(JSON.stringify(productData)); 
+           
+
            setProducts(productData.flat());
+
+          
 
            const initialQuantities = productData.flat().reduce((acc, curr) => {
             acc[curr.id] = 1;
             return acc;
           }, {});
+          console.log("itnitialllll  "+JSON.stringify(initialQuantities))
           setQuantity(initialQuantities);
 
           const initialPrice = productData.flat().reduce(
@@ -96,15 +122,17 @@ export default function Ecom()
       
     },[APIData]
   )
+
+  
   
   const [quantity, setQuantity] = useState({});
   const [price,setPrice] = useState({})
   const [initPrice , setInitPrice] = useState({});
   const [total, setTotal] = useState(0);
 
-  console.log("price "+ JSON.stringify(price))  
-  console.log("total "+ JSON.stringify(total)) 
-  console.log("initprice "+ JSON.stringify(initPrice))
+  // console.log("price "+ JSON.stringify(price))  
+  // console.log("total "+ JSON.stringify(total)) 
+  // console.log("initprice "+ JSON.stringify(initPrice))
 
   const totalFunctionAdd = (i)=>{
        return setTotal(total+ initPrice[i]);
@@ -157,7 +185,22 @@ export default function Ecom()
     ).catch((error)=>{ console.log(error)})
   }
           
-    
+
+    // console.log("init price" + JSON.stringify(initPrice));
+    // console.log("products1111111 "+JSON.stringify(products))
+    console.log("products   ",products);
+
+    useEffect(
+      ()=>{
+        if( products.length>0 ){
+
+          console.log("products   ",products);
+          dispatch(count(products.length))
+        }
+      },[ products ]
+    )
+
+
   return(
 
     <>
@@ -188,8 +231,9 @@ export default function Ecom()
                 </thead>
                 <tbody>
 
-                        
+                    
                    {  products?   (
+                     
                           products.map(
                             (i)=>{
 
@@ -205,7 +249,8 @@ export default function Ecom()
                     </th>
                     <td>
                         <p class="mb-0 mt-4">{i.title}</p>
-                        {console.log(i.title)}
+                        {console.log(i.price)}
+                        
                     </td>
                     <td>
                         <p class="mb-0 mt-4">{i.price}</p>
@@ -241,7 +286,7 @@ export default function Ecom()
                           )
                         
                         ):(
-                          <div class="loading">
+                          <div class="loading"  style={{marginTop: "190px"}}>
                               <div class="loader"></div>
                           </div>
                         )}
@@ -254,8 +299,8 @@ export default function Ecom()
 
 
 <div class="mt-5" styel={{marginTop:"10px" , backgroundColor:"grey"}}>
-                    <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code"/>
-                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+                    {/* <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code"/> */}
+                    {/* <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button> */}
                 </div>
                 <div class="row g-4 justify-content-end">
                     <div class="col-8"></div>

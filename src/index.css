@@ -338,33 +338,7 @@ Link{
 
 /* Paginate */
 
-/* #paginate{
-  background-color: #000;
-  margin-top: 50px;
-  display: flex;
-}
 
-.pagination-buttons {
-  position: fixed;
-  bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-  width: calc(100% - 40px); 
-   left: 20px;
-  right: 20px; 
-}  
-
-/* .paginate-button {
-  
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  font-size: 20px;
-  border: none;
-  cursor: pointer;
-} */
 
 /* #AllProduct{
   display:flex;
@@ -380,8 +354,10 @@ Link{
   position:fixed;
   margin-top: 300px;
   height: 40px;
-  width:50px;
+  width:40px;
   border-radius: 50px;
+  opacity: 0.8;
+  border:1px solid rgb(124, 121, 121);
   
 }
 
@@ -402,7 +378,7 @@ Link{
 
 #leftButton {
   left: 20px; /* Adjust the distance from the left side */
-    
+  z-index:100;
 }
 
 #rightButton {
