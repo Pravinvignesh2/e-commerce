@@ -20,7 +20,7 @@ export default function RouterPage()
                 <Route path='/Payment' element={<Payment></Payment>}></Route>
                 {/* <Route path="/" element={<Register></Register>}></Route> */}
                 <Route path="/Contact" element={<Contact></Contact>}></Route>
-                <Route path="/" element={<AllProduct></AllProduct>}></Route>
+                <Route path="/" element={<Register></Register>}></Route>
                  <Route path="/CheckoutForm" element={<CheckoutForm></CheckoutForm>}></Route>
                  <Route path="/AllProduct" element={<AllProduct></AllProduct>}></Route>
                 <Route path="/Login" element={<Login></Login>}></Route>

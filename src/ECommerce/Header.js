@@ -20,12 +20,12 @@ export default function Header()
             <div class="container topbar bg-primary d-none d-lg-block">
                 <div class="d-flex justify-content-between">
                     <div class="top-info ps-2">
-                        <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">123 Street, New York</a></small>
-                        <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">Email@Example.com</a></small>
+                        {/* <small class="me-3"><i class="fas fa-map-marker-alt me-2 text-secondary"></i> <a href="#" class="text-white">123 Street, New York</a></small> */}
+                        {/* <small class="me-3"><i class="fas fa-envelope me-2 text-secondary"></i><a href="#" class="text-white">Email@Example.com</a></small> */}
                     </div>
 
 
-                {name!=" " ?(<p style={{color:"yellow", filter:"drop-Shadow(0px 0px 10px blue)"}}>{"Welcome, Mr. " + name}</p>) : null}
+                {name!=" " ?(<p style={{color:"yellow", filter:"drop-Shadow(0px 0px 10px blue)", marginLeft:"250px"}}>{"Welcome, Mr. " + name}</p>) : null}
                 {/* {formData.userId!=" " ?(<p style={{color:"yellow", filter:"drop-Shadow(0px 0px 10px blue)"}}>{"Welcome, Mr. " + formData.userId}</p>) : null} */}
 
 

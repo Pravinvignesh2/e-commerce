@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaRunning, FaWindows } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
-import { namebar, id } from './slice';
+import { namebar, id, emailOfUser, contactOfUser } from './slice';
 // import { useDispatch, useSelector } from 'react-router';
 
 
@@ -21,9 +21,11 @@ export default function Register() {
     const [ username, setUserName] = useState('');
     const [userpassword, setUserPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [contact, setContact] = useState(0);
     const [userId, setUserId] = useState(null);
     const [users, setUsers] = useState([]);
     const name = useSelector((state) => state.namebar.value);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -45,17 +47,7 @@ export default function Register() {
         setEmail(e.target.value);
     };
 
-    // const handleInput = () => {
-       
-    //     // const existingUser = users.find((user) => user.email === email);
-    //     // if (existingUser) {
-    //     //     console.log("IDDDDDDDDD " + existingUser.id);
-    //     //     setUserId(existingUser.id);
-    //     //     setUserName(existingUser.username);
-    //     // } else {
-    //     //     console.log("User not found");
-    //     // }
-    // };
+    
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -67,6 +59,8 @@ export default function Register() {
             setUserId(existingUser.id);
             setUserName(existingUser.username);
             setUserPassword(existingUser.password);
+            setEmail(existingUser.email);
+            setContact(existingUser.phone);
            
         } else {
             console.log("User not found");
@@ -85,6 +79,9 @@ export default function Register() {
            if( email && inputemail==email && inputpassword==userpassword ){
             dispatch(namebar(username));
             dispatch(id (userId));
+            dispatch(emailOfUser(email));
+            console.log("email ",email);
+            dispatch(contactOfUser(contact));
             navigate("/AllProduct");
            } 
 

@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import { useSelector, useDispatch } from 'react-redux';
-import { amount } from './slice';
+import { amount, namebar, email, contact } from './slice';
 
 
 function Payment(props) {
   const [amount, setAmount] = useState('');
+  const username = useSelector((s)=> s.namebar.value);
+  const useremail = useSelector((s)=> s.email.value);
+  console.log("state ",useremail);
+  const usercontact = useSelector((s)=> s.contact.value);
+
   const amountamount= useSelector((s)=> s.amount.value );
 
   const handleSubmit = (e) => {
@@ -28,9 +33,9 @@ function Payment(props) {
           alert(response.razorpay_payment_id);
         },
         prefill: {
-          name: "Pravin",
-          email: "mvel1620r@gmail.com",
-          contact: "1234567890"
+          name: username,
+          email: useremail,
+          contact: usercontact
         },
         notes: {
           address: "Razorpay Corporate office"

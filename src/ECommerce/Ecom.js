@@ -133,6 +133,8 @@ export default function Ecom()
     },[total]
   );
 
+  
+
   const totalFunctionAdd = (i)=>{
        
        return setTotal(total+ initPrice[i]);
@@ -189,17 +191,17 @@ export default function Ecom()
 
     // console.log("init price" + JSON.stringify(initPrice));
     // console.log("products1111111 "+JSON.stringify(products))
-    console.log("products   ",products);
+    // console.log("products   ",products);
 
-    useEffect(
-      ()=>{
-        if( products.length>0 ){
+    // useEffect(
+    //   ()=>{
+    //     if( products.length>0 ){
 
-          console.log("products   ",products);
-          dispatch(count(products.length))
-        }
-      },[ products ]
-    )
+    //       console.log("products   ",products);
+    //       dispatch(count(products.length))
+    //     }
+    //   },[ products ]
+    // )
 
 
   return(
