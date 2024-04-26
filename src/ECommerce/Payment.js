@@ -6,11 +6,9 @@ import { amount, namebar, email, contact } from './slice';
 
 function Payment(props) {
   const [amount, setAmount] = useState('');
-  const username = useSelector((s)=> s.namebar.value);
-  const useremail = useSelector((s)=> s.email.value);
-  console.log("state ",useremail);
-  const usercontact = useSelector((s)=> s.contact.value);
-
+  const username = useSelector((s)=> s.namebar1.value);
+  const useremail = useSelector((s)=> s.emailOfUser.value);
+  const usercontact = useSelector((s)=> s.contactOfUser.value);
   const amountamount= useSelector((s)=> s.amount.value );
 
   const handleSubmit = (e) => {
@@ -18,7 +16,7 @@ function Payment(props) {
 
     const value = document.getElementById("amount").value;
     console.log(value);
-    if (value == "") {
+    if (value === "") {
       alert("Please enter amount");
     } else {
       var options = {

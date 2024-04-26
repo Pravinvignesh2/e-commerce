@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaRunning, FaWindows } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
-import { namebar, id, emailOfUser, contactOfUser } from './slice';
+import { namebar1, id, emailOfUser, contactOfUser } from './slice';
 // import { useDispatch, useSelector } from 'react-router';
 
 
@@ -24,7 +24,7 @@ export default function Register() {
     const [contact, setContact] = useState(0);
     const [userId, setUserId] = useState(null);
     const [users, setUsers] = useState([]);
-    const name = useSelector((state) => state.namebar.value);
+    const name = useSelector((state) => state.namebar1.value);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -77,12 +77,12 @@ export default function Register() {
 
 
            if( email && inputemail==email && inputpassword==userpassword ){
-            dispatch(namebar(username));
+            dispatch(namebar1(username));
             dispatch(id (userId));
             dispatch(emailOfUser(email));
             console.log("email ",email);
             dispatch(contactOfUser(contact));
-            navigate("/AllProduct");
+            navigate('/AllProduct/'+"All");
            } 
 
            else{

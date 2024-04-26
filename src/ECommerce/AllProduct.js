@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import StarRating from './StarRating';
 import Footer from './Footer';
 import HomePage from './HomePage';
+import { useLocation } from 'react-router-dom';
+import {useParams} from 'react-router';
 
 export default function AllProduct(props) {
     const [allProducts, setAllProducts] = useState([]);
@@ -12,6 +14,42 @@ export default function AllProduct(props) {
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 6;
     const [currentPageProducts, setCurrentPageProducts] = useState([]);
+
+    // const location = useLocation();
+    
+    // const searchValue = location.state?.value || 'All';
+    // console.log("search ",searchValue);
+    // console.log(categories);
+
+    const searchValue1 = useParams();
+    console.log(searchValue1.searchProduct, " search ");
+
+    const [searchValue, setSearchValue] = useState("");
+
+    useEffect(
+        ()=>{
+
+            if(searchValue1 !== null || searchValue1 !== undefined){
+                
+                setSearchValue(searchValue1.searchProduct.toLowerCase());
+                console.log("search:",searchValue);
+                
+                setFilteredProducts([]);
+
+                allProducts.map(product => {
+                    if(product.title.toLowerCase().indexOf(searchValue) !== -1  || 
+                        product.description.toLowerCase().indexOf(searchValue) !== -1)
+                    {
+                        setFilteredProducts([...filteredProducts,product]);
+                        console.log(filteredProducts);
+
+                    }
+                }
+            )
+
+        }}, [searchValue1]
+    )
+    
 
     useEffect(() => {
         axios.get('https://fakestoreapi.com/products')
@@ -48,6 +86,37 @@ export default function AllProduct(props) {
         }
         setCurrentPage(1); // Reset current page when filters change
     };
+
+    // useEffect(
+    //     ()=>{
+            
+    //         //console.log(" hi " ,searchValue);
+    //         if(searchValue==""){
+    //             //console.log(" hi 1 " ,searchValue);
+    //             filterByCategory('All');
+    //         }
+    //         else{
+    //             console.log("before clearing - " + filteredProducts);
+    //             setFilteredProducts([]);
+    //             console.log("after clearing - " + filteredProducts);
+    //             allProducts.map(
+                    
+    //                 (product)=>{
+    //                     //console.log(searchValue);
+    //                     //console.log(product.title);
+    //                     //console.log(" hi 1 " ,product.title.toLowerCase().search(searchValue.toLowerCase()));
+
+    //                    if( product.title.toLowerCase().indexOf(searchValue)!==-1  || 
+    //                     product.description.toLowerCase().indexOf(searchValue)!==-1){
+
+    //                       setFilteredProducts([...filteredProducts,product]);
+    //                       //console.log(filteredProducts);
+    //                    }
+    //                 }
+    //             )
+    //         }
+    //     },[searchValue3]
+    // )
 
     // Filter products by minimum rating
     const filterByRating = (minRating) => {

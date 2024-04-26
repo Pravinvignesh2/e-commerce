@@ -12,12 +12,21 @@ export default function ProductDetail() {
     const [rating,setRating]=useState({});
 
     useEffect(() => {
+
+        console.log("product ", productId );
         axios.get(`https://fakestoreapi.com/products/${productId}`)
             .then(response => {
                 setProduct(response.data);
-                console.log(response.data)
+                console.log(response.data);
+
+                if( response.data.rating.rate){
                 setRating(response.data.rating.rate)
                 console.log("response from api"+response.data.rating.rate)
+                }
+
+                else{
+                    console.log(" error ");
+                }
             })
             .catch(error => {
                 console.error('Error fetching product details:', error);
@@ -55,8 +64,8 @@ export default function ProductDetail() {
                                             <h5 className="fw-bold ">${product.price}</h5>
                                             <small className='mt-0'>Inclusive of all taxes</small>
                                             <div className="d-flex mb-4">
-                                                <StarRating rating={product.rating.rate} />
-                                                <span className="ms-2">{product.rating.count} reviews</span>
+                                              { product.rating && <StarRating rating={product.rating.rate} />}
+                                               { product.rating && <span className="ms-2">{product.rating.count} reviews</span>}
                                             </div>
                                             <h4>Description:</h4>
                                             <p className="mb-4">{product.description}</p>

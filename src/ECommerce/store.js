@@ -7,7 +7,7 @@ import { amountReducer , emailReducer, contactReducer} from './slice';
 
 export default configureStore({
     reducer: {
-        namebar: nameReducer,
+        namebar1: nameReducer,
         id: idReducer,
         count: countReducer,
         amount:amountReducer,

@@ -6,7 +6,7 @@ const slice= createSlice({
         value:"",
     },
     reducers:{
-        namebar:(state,action)=>{
+        namebar1:(state,action)=>{
             state.value="";
             state.value+=action.payload
         }
@@ -83,7 +83,7 @@ const amount1= createSlice({
     }
 })
 
-export const {namebar}=slice.actions;
+export const {namebar1}=slice.actions;
 export const {id}=idSlice.actions;
 export const {count}=countOfEcom.actions;
 export const {amount}=amount1.actions;

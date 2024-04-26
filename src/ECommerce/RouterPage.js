@@ -29,7 +29,8 @@ export default function RouterPage()
                 <Route path="/Header" element={<Header></Header>}></Route>
                 <Route path="/HomePage" element={<HomePage></HomePage>}></Route>
                 <Route path="/Ecom" element={<Ecom></Ecom>}></Route>
-                <Route path="/AllProduct/:productId" element={<ProductDetail></ProductDetail>}></Route>
+                {/* <Route path="/AllProduct/:productId" element={<ProductDetail></ProductDetail>}></Route> */}
+                <Route path="/AllProduct/:searchProduct" element={<AllProduct></AllProduct>}></Route>
            </Routes>
     )
    
