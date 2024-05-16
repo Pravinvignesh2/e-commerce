@@ -2,8 +2,15 @@
 import React from 'react';
 import Header from './Header';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { cartToCheck,allProducts } from './slice';
 
 export default function CheckoutForm() {
+
+    const checkOutProducts = useSelector((s)=> s.cartToCheck.value);
+    // const allProductsFromStore = useSelector((s)=> s.allProducts.value);
+    console.log("check products", checkOutProducts);
+    // console.log("allProductsFromStore ", allProductsFromStore);
   return (
        
         
@@ -110,39 +117,35 @@ export default function CheckoutForm() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="d-flex align-items-center mt-2">
+
+                                         {checkOutProducts && checkOutProducts.length>0 ? 
+                                         (checkOutProducts.map(
+
+                                            (item,index)=>{
+                                                console.log(item);
+                                                return(
+                                                <tr key={index}>
+                                                         <th scope="row">
+                                                        <div class="d-flex align-items-center mt-2">
                                             
-                                                </div>
-                                            </th>
-                                            <td class="py-5">Awesome Brocoli</td>
-                                            <td class="py-5">$69.00</td>
-                                            <td class="py-5">2</td>
-                                            <td class="py-5">$138.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="d-flex align-items-center mt-2">
-                                                  
-                                                </div>
-                                            </th>
-                                            <td class="py-5">Potatoes</td>
-                                            <td class="py-5">$69.00</td>
-                                            <td class="py-5">2</td>
-                                            <td class="py-5">$138.00</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">
-                                                <div class="d-flex align-items-center mt-2">
-                                                   
-                                                </div>
-                                            </th>
-                                            <td class="py-5">Big Banana</td>
-                                            <td class="py-5">$69.00</td>
-                                            <td class="py-5">2</td>
-                                            <td class="py-5">$138.00</td>
-                                        </tr>
+                                                          </div>
+                                                         </th>
+                                                         {console.log(item.product.title)}
+                                                         <td class="py-5">{item.product.title}</td>
+                                                         <td class="py-5">{item.product.price}</td>
+                                                         <td class="py-5">{item.Quantity}</td>
+                                                         <td class="py-5">{item.Quantity * item.product.price}</td>
+                                               </tr>
+                                          )
+                                         }
+                                    
+                                        
+                                    )) :  (
+                                                <tr>
+                                                    <td colSpan="5" className="text-center py-5">No products in the cart</td>
+                                                </tr>
+                                                
+                                     )}
                                         <tr>
                                             <th scope="row">
                                             </th>
@@ -153,7 +156,7 @@ export default function CheckoutForm() {
                                             </td>
                                             <td class="py-5">
                                                 <div class="py-3 border-bottom border-top">
-                                                    <p class="mb-0 text-dark">$414.00</p>
+                                                    <p class="mb-0 text-dark">${checkOutProducts[0].total}</p>
                                                 </div>
                                             </td>
                                         </tr>
@@ -188,7 +191,7 @@ export default function CheckoutForm() {
                                             <td class="py-5"></td>
                                             <td class="py-5">
                                                 <div class="py-3 border-bottom border-top">
-                                                    <p class="mb-0 text-dark">$135.00</p>
+                                                    <p class="mb-0 text-dark">${checkOutProducts[0].total + 15 + 8}</p>
                                                 </div>
                                             </td>
                                         </tr>

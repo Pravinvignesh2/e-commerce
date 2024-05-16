@@ -147,11 +147,11 @@ text-align: center;
 
 /* Apply animations to respective elements */
 #imge {
-  animation: slideInFromLeft 2s ease forwards;
+  animation: slideInFromLeft 3s ease forwards;
 }
 
 #description {
-  animation: slideInFromRight 2s ease forwards;
+  animation: slideInFromRight 3s ease forwards;
 }
 
 

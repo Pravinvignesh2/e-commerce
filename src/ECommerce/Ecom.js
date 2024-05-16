@@ -4,84 +4,77 @@ import axios from 'axios';
 import HomePage from './HomePage';
 import Footer from './Footer';
 import { useSelector, useDispatch } from 'react-redux';
-import { id, count , amount} from './slice';
+import { id, count , amount, cartAll, allProduct } from './slice';
 import Payment from './Payment';
 
 export default function Ecom()
 {
  
-  const [APIData, setAPIData] = useState([]);
+  // const [cartProducts, setcartProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [products1, setProducts1] = useState([]); 
 
   // const [formData, setFormData] = useContext(contextCreate);
   const ID = useSelector((s)=> s.id.value);
+  const cartProducts= useSelector((s)=>s.cart.value);
+  const allProducts = useSelector((s)=>s.allProducts.value);
+  const [Quantity, setQuantity] = useState({});
+  const [dispatchArray, setDispatchArray] = useState([]);
+
+  console.log("cartProduct",dispatchArray);
+  // console.log("API",cartProducts);
+
   const dispatch=useDispatch();
  
 
   
-    console.log("formdataaaaa "+ JSON.stringify(APIData));
+    // console.log("formdataaaaa "+ JSON.stringify(cartProducts));
     //console.log("lengthhhhh "+ Object.keys(formData).length);
 
-  useEffect(
-     ()=>{
-      
-      
-      const api = async ()=>{
-        
-        axios.get(`https://fakestoreapi.com/carts/user/${ID}`)
-      .then(
-        (response) => {
-          // console.log(response.data);
-          setAPIData([response.data[0]]);
-          
-        }
-      )
-      .catch(()=>{console.log("error")})
+  
 
+   useEffect(
+    ()=>{
+      const v = dispatchArray.length>0 ? dispatchArray.length : 0;
+      if( v>0){
+        console.log("dispatch ",dispatchArray);
+        dispatch(cartAll(dispatchArray));
       }
-      // Object.keys(formData).length >0
-      if( ID ){
-          api();
-      }
-    
-      
-    // },[formData, formData.userId]
-  },[]
-   )
+   },[dispatchArray])
 
   useEffect(
     ()=>{
       
-      const v = APIData ? Object.keys(APIData).length : 0;
+      const v = cartProducts.length>0 ? cartProducts.length : 0;
       if( v>0){
         
         const fetchProducts = async ()=>{
-             const productData = await Promise.all(
-               
-              APIData.map( (product)=>{
-                // console.log("product "+JSON.stringify(product));
-              
-               return  Promise.all(
-                  product.products.map(
 
-                    async (product)=>{
-                      const response = await axios.get(`https://fakestoreapi.com/products/${product.productId}`);
-                      return response.data;
-                    }
-                  )
-                 )
-                 
-                }
+          const productData = [];
+
+          cartProducts.map(
+            (item)=>{
                 
-               )
-                   );
-            
+                console.log("item",item);
+                const exists = allProducts.find((allProductsItem) => allProductsItem.id == item.productId);
+                console.log("products",products);
+                const index = products.findIndex((exist) => exist && exist.id== exists.id);
+                console.log("exista1",exists);
+                
+               if( exists ){
+                // setProducts(products.push(exists));//push
+                if( index == -1){
+                  setProducts([...products,exists]);
+                  console.log("exista",exists);
+                  return productData.push(exists);
+                }
+               
+               }
+            }
+          )
+
            
-
-           setProducts(productData.flat());
-
-          
+           console.log("productData ",productData);
 
            const initialQuantities = productData.flat().reduce((acc, curr) => {
             acc[curr.id] = 1;
@@ -113,27 +106,26 @@ export default function Ecom()
         
       
       
-    },[APIData]
+    },[cartProducts]
   )
-
   
-  
-  const [quantity, setQuantity] = useState({});
+  // const [Quantity, setQuantity] = useState({});
   const [price,setPrice] = useState({})
   const [initPrice , setInitPrice] = useState({});
   const [total, setTotal] = useState(0);
+  
+  // const ecomObj = useState({});  
 
-  // console.log("price "+ JSON.stringify(price))  
+  console.log("price "+ Quantity)  
   // console.log("total "+ JSON.stringify(total)) 
   // console.log("initprice "+ JSON.stringify(initPrice))
+  console.log("products",products);
 
   useEffect(
     ()=>{
       dispatch(amount(total))
     },[total]
   );
-
-  
 
   const totalFunctionAdd = (i)=>{
        
@@ -166,13 +158,13 @@ export default function Ecom()
 }
   const plus = (i)=>{
     
-     setQuantity({...quantity,[i] : quantity[i]+1});
+     setQuantity({...Quantity,[i] : Quantity[i]+1});
      add(i);
   }
     
   const minus =(i)=>{
-      if(quantity[i]>1){
-         setQuantity({...quantity, [i] : quantity[i]-1});
+      if(Quantity[i]>1){
+         setQuantity({...Quantity, [i] : Quantity[i]-1});
         //  setPrice({...price, [i] : price[i]/ parseInt(quantity[i])});
         Sub(i);
       }
@@ -203,8 +195,7 @@ export default function Ecom()
     //   },[ products ]
     // )
 
-
-  return(
+    return(
 
     <>
     <>
@@ -212,12 +203,6 @@ export default function Ecom()
       <HomePage></HomePage>
     </>
     
-   
-           
-
-
-
-
 <div class="container-fluid py-5"  style={{marginTop:"100px" }}>
     <div class="container py-5">
         <div class="table-responsive">
@@ -245,7 +230,8 @@ export default function Ecom()
                        
                     <tr key={i.id} >
                     <th scope="row">
-                      <Link to={`/Allproduct/${i.id}`}>  <div class="d-flex align-items-center">
+                      {/* {console.log("title ",i.title)} */}
+                      <Link to={`/Allproduct/${i.title}/${i.id}`}>  <div class="d-flex align-items-center">
                             <img src={i.image} class="img-fluid me-5 rounded-circle" style={{width: "80px", height: "80px"}} alt=""/>
                         </div>
                       </Link> 
@@ -265,7 +251,7 @@ export default function Ecom()
                                 <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" id={i.id} class="form-control form-control-sm text-center border-0" style={{backgroundColor:"transparent"}} value={quantity[i.id]} readOnly/>
+                            <input type="text" id={i.id} class="form-control form-control-sm text-center border-0" style={{backgroundColor:"transparent"}} value={Quantity[i.id]} readOnly/>
                             <div class="input-group-btn">
                                 <button class="btn btn-sm btn-plus rounded-circle bg-light border" onClick={()=>{plus(i.id)}}>
                                     <i class="fa fa-plus"></i>
@@ -343,3 +329,95 @@ export default function Ecom()
 }
 
 
+            //  const productData = await Promise.all(
+               
+            //   cartProducts.map( (product)=>{
+            //     // console.log("product "+JSON.stringify(product));
+              
+            //    return  Promise.all(
+            //       product.products.map(
+
+            //         async (product)=>{
+            //           const response = await axios.get(`https://fakestoreapi.com/products/${product.productId}`);
+            //           return response.data;
+            //         }
+            //       )
+            //      )
+                 
+            //     }
+                
+            //    )
+            //        );
+
+            //const productData = await Promise.all(
+
+              // cartProducts.map(
+              //   product => {
+              //     console.log("productId ",product.productId);
+              //     // return Promise.all(
+              //       async ()=>{
+              //         const response = await axios.get(`https://fakestoreapi.com/products/${product.productId}`);
+              //         console.log("reponse ",response.data);
+              //         // setProducts(response.data);
+              //       }
+                  // )
+                //}
+              //)
+            //)
+            
+            // productData();
+
+            // const productData = async () => {
+            //     return await Promise.all(cartProducts.map(this.getSingleProductInfo));
+            // }
+
+            // const getSingleProductInfo = async (product) => {                
+            //     return await axios.get(`https://fakestoreapi.com/products/${product.productId}`)
+            //       .then(response => {
+            //             response.json();
+            //             console.log("Response: " + response.json());
+            //         }
+            //       );
+            // }
+
+
+
+
+            //    api for user cart ,unnecessary
+
+            // axios.get(`https://fakestoreapi.com/carts/user/${ID}`)
+      // .then(
+      //   (response) => {
+      //     console.log("response ",response.data);
+      //     response.data.map(
+      //       data => {
+      //         data.products.map(
+      //           item => {
+                  
+      //             setDispatchArray(dispatchArray => {
+      //               const existingIndex = dispatchArray.findIndex(items => items.productId === item.productId);
+      //               console.log("existing",existingIndex);
+      //               if (existingIndex !== -1) {
+      //                   // If the product already exists, update its quantity
+      //                   const newArray = [...dispatchArray];
+      //                   console.log("new",newArray);
+      //                   setQuantity(
+      //                     Quantity=>({
+      //                        ...Quantity,
+      //                        [newArray[existingIndex].ProductId]:Quantity[newArray[existingIndex].productId]+1
+      //                     }
+      //                   )
+      //                   );
+                        
+      //                   return [...newArray,{"productId":newArray[existingIndex].productId , "quantity": newArray[existingIndex].quantity+1}];
+      //               } else {
+      //                   // If the product doesn't exist, add it to the array
+      //                   return [...dispatchArray, {"productId": item.productId, "quantity": item.quantity}];
+      //               }
+      //           });
+
+                 
+      //           }
+      //         )
+      //       }
+      //     )

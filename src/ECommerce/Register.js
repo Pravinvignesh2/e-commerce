@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaRunning, FaWindows } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
-import { namebar1, id, emailOfUser, contactOfUser } from './slice';
+import { namebar1, id, emailOfUser, contactOfUser, cart } from './slice';
+// import { useRouteId } from 'react-router/dist/lib/hooks';
 // import { useDispatch, useSelector } from 'react-router';
 
 
@@ -25,6 +26,9 @@ export default function Register() {
     const [userId, setUserId] = useState(null);
     const [users, setUsers] = useState([]);
     const name = useSelector((state) => state.namebar1.value);
+    // const [cartProductsDispatch, setCartProductsDispatch] = useState([]);
+
+    console.log("cart",userId);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -39,11 +43,37 @@ export default function Register() {
             });
     }, []);
 
+    //cart dispatch to store
+    useEffect(
+        ()=>{
+
+        if( userId ){ 
+            axios.get(`https://fakestoreapi.com/carts/user/${userId}`).
+            then((response)=>{
+                console.log("car",response.data);
+                response.data.map(
+                    (item)=>{
+                       item.products.map(
+                        product => {
+                            dispatch(cart({"productId":product.productId,"quantity":product.quantity}));
+                        }
+                       )
+                    }
+                )
+            })
+            .catch((error)=>{ console.log("error ",error)})
+        }
+        },[userId]
+    )
+
+
     const userNameFun = (e) => {
+        setUserName("")
         setUserName(e.target.value);
     };
 
     const userEmailFun = (e) => {
+        setEmail("");
         setEmail(e.target.value);
     };
 

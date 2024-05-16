@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { nameReducer } from './slice'; 
 import { idReducer } from './slice'; 
 import { countReducer } from './slice';
-import { amountReducer , emailReducer, contactReducer} from './slice';
+import { amountReducer , emailReducer, contactReducer, cartReducer, allProductReducer, checkOutReducer} from './slice';
 
 export default configureStore({
     reducer: {
@@ -13,5 +13,9 @@ export default configureStore({
         amount:amountReducer,
         emailOfUser:emailReducer,
         contactOfUser:contactReducer,
+        cart:cartReducer,
+        cartAll:cartReducer,
+        allProducts:allProductReducer,
+        cartToCheck:checkOutReducer,
     },
 });

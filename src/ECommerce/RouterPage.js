@@ -1,4 +1,5 @@
 import Ecom from "./Ecom";
+import EcomRedux from "./EcomRedux";
 import HomePage from "./HomePage";
 import AllProduct from "./AllProduct";
 import Register from "./Register";
@@ -28,8 +29,9 @@ export default function RouterPage()
                 <Route path="/Register" element={<Register></Register>}></Route>
                 <Route path="/Header" element={<Header></Header>}></Route>
                 <Route path="/HomePage" element={<HomePage></HomePage>}></Route>
-                <Route path="/Ecom" element={<Ecom></Ecom>}></Route>
-                {/* <Route path="/AllProduct/:productId" element={<ProductDetail></ProductDetail>}></Route> */}
+                {/* <Route path="/Ecom" element={<Ecom></Ecom>}></Route> */}
+                <Route path="/EcomRedux" element={<EcomRedux></EcomRedux>}></Route>
+                <Route path="/AllProduct/:searchProduct/:productId" element={<ProductDetail></ProductDetail>}></Route>
                 <Route path="/AllProduct/:searchProduct" element={<AllProduct></AllProduct>}></Route>
            </Routes>
     )

@@ -49,22 +49,22 @@ export default function ProductDetail() {
             <div className="container-fluid py-5">
                 <div className="container-fluid py-5">
                     <div className="row g-4 mb-5">
-                        <div className="col-lg-8 col-xl-9">
-                            <div className="row g-4">
-                                <div className="col-lg-6">
-                                    <div className="border rounded">
-                                        {product && <img src={product.image} className="img-fluid rounded" alt={product.title} />}
-                                    </div>
+                        <div className="col-lg-8 col-xl-12 " style={{}}>
+                            <div className="row g-6 "   style={{ maxWidth:'100%'}}>
+                                <div className="col-lg-6" style={{height:'400px',marginTop:'170px'}}>
+                                    {/* <div className="border rounded" style={{ backgroundColor:'black',height:'400px' ,marginLeft:'100px'}} > */}
+                                        {product && <img src={product.image} className="img-fluid rounded" id="imge" alt={product.title} style={{ marginLeft:'190px',marginTop:'90px',maxWidth:'100%',maxHeight:'100%'}} />}
+                                    {/* </div> */}
                                 </div>
-                                <div className="col-lg-6">
+                                <div className="col-xxl-6" id="description" style={{height:'500px',marginTop:'170px'}}>
                                     {product && (
                                         <>
                                             <h4 className="fw-bold mb-3">{product.title}</h4>
                                             <p className="mb-3">Category: {product.category}</p>
                                             <h5 className="fw-bold ">${product.price}</h5>
                                             <small className='mt-0'>Inclusive of all taxes</small>
-                                            <div className="d-flex mb-4">
-                                              { product.rating && <StarRating rating={product.rating.rate} />}
+                                            <div className="d-flex mb-4" style={{}}>
+                                              { product.rating && <StarRating rating={product.rating.rate} style={{ backgroundColor:'black', marginTop:'5px'}}/>}
                                                { product.rating && <span className="ms-2">{product.rating.count} reviews</span>}
                                             </div>
                                             <h4>Description:</h4>
