@@ -4,7 +4,7 @@ import axios from 'axios';
 import HomePage from './HomePage';
 import Footer from './Footer';
 import { useSelector, useDispatch } from 'react-redux';
-import { id, count , amount, cartAll, cart, allProducts, cartToCheck, checkoutSlice } from './slice';
+import { id, count , amount, cartAll, cart, allProducts, cartToCheck, checkoutSlice, amount1 } from './slice';
 import Payment from './Payment';
 
  export default function EcomRedux(){
@@ -12,7 +12,7 @@ import Payment from './Payment';
     const cartProducts = useSelector((s) => s.cart.value);
     const productsFromStore = useSelector((s) => s.allProducts.value );
     const dispatch = useDispatch();
-    
+
     const fromCheck = useSelector((s)=> s.cartToCheck.value || [] );
     const [products,setProducts] = useState([]);
     const [price,setPrice] = useState({});
@@ -182,6 +182,7 @@ import Payment from './Payment';
             
             if( checkOut){
                 dispatch(cartToCheck(checkOut));
+                dispatch(amount((total)))
             }
         },[ checkOut,products ]
     )
@@ -194,7 +195,7 @@ import Payment from './Payment';
           <HomePage></HomePage>
         </>
         
-    <div class="container-fluid py-5"  style={{marginTop:"100px" }}>
+    <div class="container-fluid py-5"  style={{Top:"10px"}}>
         <div class="container py-5">
             <div class="table-responsive">
                 <table class="table">

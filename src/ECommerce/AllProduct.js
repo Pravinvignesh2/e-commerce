@@ -16,6 +16,7 @@ export default function AllProduct(props) {
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 6;
     const [currentPageProducts, setCurrentPageProducts] = useState([]);
+    const [searchInput,setSearchInput]= useState("");
 
     
 
@@ -115,6 +116,15 @@ export default function AllProduct(props) {
         },[searchValue, allProducts]
     )
 
+    // search
+    const handleSearchInput= (e)=>{
+          setSearchInput(e.target.value);
+    }
+    const searchProducts = ()=>{
+    
+        setSearchValue(searchInput);
+    }
+
     // Filter products by minimum rating
     const filterByRating = (minRating) => {
         const filtered = allProducts.filter(product => product.rating.rate >= minRating);
@@ -137,13 +147,39 @@ export default function AllProduct(props) {
     }
 
     return (
-        <>
-            <HomePage />
-            <div className="container-fluid" style={{ marginTop: '190px' }}>
-                <div className="row">
+        <>   
+                <HomePage />
+             
+            
+            <div className="container-fluid" id="container" style={{ marginTop:"10px" }}>
+                 {/* search button */}
+
+                 <div id="searchDivInAllProduct" style={{marginLeft:"auto",marginRight:"auto", gridGap:"15px"}}>
+                                 <input type="text" id="searchTab" value={searchInput} onChange={handleSearchInput} placeholder="search products"  ></input>
+                                 <button type="submit" id="searchButton" onClick={searchProducts}>search</button>
+               </div>
+                {/* filter */}
+            
+                <div className='filterForPhone' >
+                    {/* <button className="filterButton" >Filter</button> */}
+                    <select onChange={(e) => filterByCategory(e.target.value)}  style={{}}>
+                                    <option value="All">All</option>
+                                    {categories.map(category => (
+                                       (()=>{
+                                         const bgColor =  "#" + Math.floor(Math.random() * 16777251).toString(16).padStart(6, '0');
+                                         console.log(bgColor);
+                                        return (
+                                            <option key={category} value={category} style={{backgroundColor:bgColor,padding:"10px",opacity:"0.5"}}>{category}</option>
+                                        );
+                                       })()
+                                    ))}
+                     </select>
+                </div>
+
+                <div className="row" id="allProductStyle" style={{ marginTop: '10px' }}>
 
                     {/* Filter part */}
-                    <div className="col-md-2 filter-options"  style={{marginTop:'150px'}}>
+                    <div className="col-md-3 col-sm-3 filter-options" id="filter" style={{marginTop:'150px'}}>
                         <div>
                             <h3 style={{marginBottom:'20px', marginLeft:'110px'}}>Filter</h3>
                             <div className='category'>
@@ -210,7 +246,7 @@ export default function AllProduct(props) {
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer style={{bottom:"0"}}/>
         </>
     );
     

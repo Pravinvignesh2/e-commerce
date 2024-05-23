@@ -32,7 +32,7 @@ export default function Header()
     return (
         <>
         {/* Navbar start */}
-        <div class="container-fluid fixed-top" >
+        <div class="container-fluid fixed-top" style={{position:"relative"}}>
             <div class="container topbar bg-primary d-none d-lg-block">
 
                 
@@ -59,10 +59,10 @@ export default function Header()
                 <div id="searchDiv" style={{marginLeft:"450px", gridGap:"15px"}}>
                                  <input type="text" id="searchTab" placeholder="search products"  ></input>
                                  <button type="submit" id="searchButton" onClick={searchProducts}>search</button>
-                    </div>
+               </div>
             </div>
             <div class="container px-0">
-                <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <nav class="navbar navbar-light bg-white navbar-expand-xl" id="nav">
                     <a href="index.html" class="navbar-brand"><h1 class="text-primary display-6">MAPI EcomRedux </h1></a>
                     <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="fa fa-bars text-primary"></span>

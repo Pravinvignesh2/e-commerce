@@ -156,7 +156,8 @@ export default function CheckoutForm() {
                                             </td>
                                             <td class="py-5">
                                                 <div class="py-3 border-bottom border-top">
-                                                    <p class="mb-0 text-dark">${checkOutProducts[0].total}</p>
+                                                   { checkOutProducts.length? (<p class="mb-0 text-dark">${checkOutProducts[0].total}</p>)
+                                                   :(<p>No Total</p>)} 
                                                 </div>
                                             </td>
                                         </tr>
@@ -191,7 +192,7 @@ export default function CheckoutForm() {
                                             <td class="py-5"></td>
                                             <td class="py-5">
                                                 <div class="py-3 border-bottom border-top">
-                                                    <p class="mb-0 text-dark">${checkOutProducts[0].total + 15 + 8}</p>
+                                                 { checkOutProducts.length? ( <p class="mb-0 text-dark">${checkOutProducts[0].total + 15 + 8}</p>):(<p>No Total</p>)}
                                                 </div>
                                             </td>
                                         </tr>
