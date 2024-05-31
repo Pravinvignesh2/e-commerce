@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import StarRating from './StarRating';
 import Footer from './Footer';
 import HomePage from './HomePage';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {useParams} from 'react-router';
 import {useDispatch} from 'react-redux';
 import {allProducts as allProductsFromSlice, cart} from './slice';
@@ -21,12 +21,7 @@ export default function AllProduct(props) {
     
 
     const dispatch = useDispatch();
-
-    // const location = useLocation();
-    
-    // const searchValue = location.state?.value || 'All';
-    // console.log("search ",searchValue);
-    console.log("all ",allProducts);
+    const navigate= useNavigate();
 
     const searchValue1 = useParams();
     // console.log(searchValue1.searchProduct, " search ");
@@ -95,7 +90,7 @@ export default function AllProduct(props) {
                 filterByCategory('All');
             }
             else{
-                console.log("faaa ",allProducts);
+                // console.log("faaa ",allProducts);
                 const filtered = allProducts.filter(product =>
                     product.title.toLowerCase().includes(searchValue) ||
                     product.description.toLowerCase().includes(searchValue ||
@@ -146,6 +141,11 @@ export default function AllProduct(props) {
          dispatch(cart({"productId":allProducts[find].id, "quantity":1}));
     }
 
+    //move to product details
+    const productDetail = (id)=>{
+        navigate(`/Allproduct/${searchValue}/${id}`);
+    }
+
     return (
         <>   
                 <HomePage />
@@ -167,7 +167,7 @@ export default function AllProduct(props) {
                                     {categories.map(category => (
                                        (()=>{
                                          const bgColor =  "#" + Math.floor(Math.random() * 16777251).toString(16).padStart(6, '0');
-                                         console.log(bgColor);
+                                        //  console.log(bgColor);
                                         return (
                                             <option key={category} value={category} style={{backgroundColor:bgColor,padding:"10px",opacity:"0.5"}}>{category}</option>
                                         );
@@ -185,12 +185,24 @@ export default function AllProduct(props) {
                             <div className='category'>
                                 <h4 className='filter-heading'>Category:</h4>
 
-                                <select onChange={(e) => filterByCategory(e.target.value)}>
+                                {/* <select onChange={(e) => filterByCategory(e.target.value)}>
                                     <option value="All">All</option>
                                     {categories.map(category => (
                                         <option key={category} value={category}>{category}</option>
                                     ))}
-                                </select>
+                                </select> */}
+                                <select onChange={(e) => filterByCategory(e.target.value)}  style={{}}>
+                                    <option value="All">All</option>
+                                    {categories.map(category => (
+                                       (()=>{
+                                         const bgColor =  "#" + Math.floor(Math.random() * 16777251).toString(16).padStart(6, '0');
+                                        //  console.log(bgColor);
+                                        return (
+                                            <option key={category} value={category} style={{backgroundColor:bgColor,padding:"10px",opacity:"0.5"}}>{category}</option>
+                                        );
+                                       })()
+                                    ))}
+                               </select>
                             </div>
 
                             <div className='min-rating'  >
@@ -210,8 +222,9 @@ export default function AllProduct(props) {
                         {/* Display products */}
                         <div className="row" id='Allproduct'>
                             {currentPageProducts.map(product => (
-                                <div key={product.id} className="col-md-6 col-lg-4 col-xl-3" id="ProductElement">
-                                    <Link to={`/Allproduct/${searchValue}/${product.id}`}>
+                                <div key={product.id} className="col-md-6 col-lg-4 col-xl-3" id="ProductElement" onClick={()=>{productDetail(product.id)}}>
+
+                                    {/* <Link to={`/Allproduct/${searchValue}/${product.id}`}> */}
                                         <div className="border border-secondary mb-4 rounded">
                                             <div className="rounded position-relative fruite-item">
                                                 <div className="fruite-img image-container " id="imge1">
@@ -228,12 +241,20 @@ export default function AllProduct(props) {
                                                     </div>
                                                     <div className="d-flex justify-content-between flex-lg-wrap" id="price-bottom">
                                                         <p className="price text-dark fs-5 fw-bold mb-0">${product.price}</p>
-                                                        <button className="btn border border-secondary rounded-pill px-3 text-primary" onClick={()=>{addToCart(product.id)}} ><i className="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                                                        <button className="btn border border-secondary rounded-pill px-3 text-primary" 
+                                                        onClick={(event)=>
+                                                            {
+                                                            event.stopPropagation();
+                                                             addToCart(product.id);
+                                                            }
+                                                            } 
+                                                        ><i className="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </Link>
+                                    {/* </Link> */}
+
                                 </div>
                             ))}
                         </div>

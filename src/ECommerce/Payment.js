@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Header from './Header';
+import Footer from './Footer';
 import { useSelector, useDispatch } from 'react-redux';
 import { amount, namebar, email, contact } from './slice';
 
@@ -48,8 +49,9 @@ function Payment(props) {
   }
 
   return (
-    <div className="payment-container">
-      <Header></Header>
+    <>
+    <Header></Header>
+    <div className="payment-container" style={{marginTop:"10px"}}>
       <h2 className="payment-title">Razorpay Payment</h2>
       <form className="payment-form" onSubmit={handleSubmit}>
         <input
@@ -63,6 +65,8 @@ function Payment(props) {
         <button type="submit" className="submit-button">Submit</button>
       </form>
     </div>
+    <Footer></Footer>
+    </>
   );
 }
 

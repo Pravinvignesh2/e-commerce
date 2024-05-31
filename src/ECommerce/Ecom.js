@@ -163,7 +163,8 @@ export default function Ecom()
   }
     
   const minus =(i)=>{
-      if(Quantity[i]>1){
+      console.log("qqqq ",Quantity[i]);
+      if(Quantity[i]>0){
          setQuantity({...Quantity, [i] : Quantity[i]-1});
         //  setPrice({...price, [i] : price[i]/ parseInt(quantity[i])});
         Sub(i);
@@ -179,21 +180,7 @@ export default function Ecom()
       ()=>{}
     ).catch((error)=>{ console.log(error)})
   }
-          
-
-    // console.log("init price" + JSON.stringify(initPrice));
-    // console.log("products1111111 "+JSON.stringify(products))
-    // console.log("products   ",products);
-
-    // useEffect(
-    //   ()=>{
-    //     if( products.length>0 ){
-
-    //       console.log("products   ",products);
-    //       dispatch(count(products.length))
-    //     }
-    //   },[ products ]
-    // )
+ 
 
     return(
 
@@ -314,7 +301,7 @@ export default function Ecom()
                                 <p class="mb-0 pe-4">${parseFloat(total ).toFixed(2)}</p>
                                 
                             </div>
-                            <Link to="/Payment" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</Link>
+                            <Link to="/CheckoutForm" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</Link>
                         </div>
                     </div>
                 </div>

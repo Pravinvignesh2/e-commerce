@@ -15,7 +15,11 @@ export default configureStore({
         contactOfUser:contactReducer,
         cart:cartReducer,
         cartAll:cartReducer,
+        deleteItemFromCart:cartReducer,
         allProducts:allProductReducer,
         cartToCheck:checkOutReducer,
+        checkoutCart:checkOutReducer,
+        increment:checkOutReducer,
+        decrement:checkOutReducer,
     },
 });

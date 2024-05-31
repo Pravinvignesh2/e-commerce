@@ -7,6 +7,8 @@ import contextCreate from "./context";
 import { namebar } from './slice';
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {cart,cartToCheck} from './slice';
 // import useHistory from 'react-router';
 
 
@@ -16,6 +18,7 @@ export default function Header()
     // const [formData, setFormData] = useContext(contextCreate);
     const name = useSelector((s)=> s.namebar1.value);
     const countOfEcomRedux = useSelector((s)=> s.count.value);
+    const dispatch = useDispatch();
 
     const navigate=useNavigate();
 
@@ -28,6 +31,11 @@ export default function Header()
             
         );
 
+    }
+
+    const clearCart =()=>{
+       dispatch(cart({productId:"no",quantity:1}));
+       dispatch(cartToCheck([]));
     }
     return (
         <>
@@ -94,7 +102,7 @@ export default function Header()
 
 
                             <Link to="/Register" class="my-auto">
-                                <i class="fas fa-user fa-2x" style={{color:"#09B9AC"}}></i>
+                                <i class="fas fa-user fa-2x" style={{color:"#09B9AC"}} onClick={clearCart}></i>
                             </Link>
 
 

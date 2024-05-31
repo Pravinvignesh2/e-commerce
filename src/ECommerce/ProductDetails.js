@@ -4,9 +4,12 @@ import axios from 'axios';
 import HomePage from './HomePage';
 import Footer from './Footer';
 import StarRating from './StarRating';
+import {cart} from './slice';
+import {useDispatch} from 'react-redux';
 
 
 export default function ProductDetail() {
+    const dispatch = useDispatch();
     const { productId } = useParams();
     const [product, setProduct] = useState(null);
     const [rating,setRating]=useState({});
@@ -32,6 +35,11 @@ export default function ProductDetail() {
                 console.error('Error fetching product details:', error);
             });
     }, [productId]);
+
+    // add to cart
+    const addToCart = (id)=>{
+         dispatch(cart({productId:id, quantity:1}));
+    }
     
     return (
         <>
@@ -79,7 +87,7 @@ export default function ProductDetail() {
                                                 <option>XXL</option>
 
                                             </select>
-                                            <a href="#" className="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i className="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                            <button className="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"  onClick={()=>{addToCart(product.id)}}><i className="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                         </>
                                     )}
                                 </div>

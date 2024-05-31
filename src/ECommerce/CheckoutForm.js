@@ -3,18 +3,15 @@ import React from 'react';
 import Header from './Header';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { cartToCheck,allProducts } from './slice';
+import { useDispatch } from 'react-redux';
+import { cartToCheck,allProducts, checkoutCart } from './slice';
 
 export default function CheckoutForm() {
 
     const checkOutProducts = useSelector((s)=> s.cartToCheck.value);
-    // const allProductsFromStore = useSelector((s)=> s.allProducts.value);
-    console.log("check products", checkOutProducts);
-    // console.log("allProductsFromStore ", allProductsFromStore);
+    
   return (
-       
-        
-
+ 
     <body>        <Header></Header>
         
         <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
