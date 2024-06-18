@@ -93,8 +93,8 @@ export default function AllProduct(props) {
                 // console.log("faaa ",allProducts);
                 const filtered = allProducts.filter(product =>
                     product.title.toLowerCase().includes(searchValue) ||
-                    product.description.toLowerCase().includes(searchValue ||
-                    product.category.toLowerCase().includes(searchValue) )
+                    product.description.toLowerCase().includes(searchValue) ||
+                    product.category.toLowerCase().includes(searchValue) 
                 );
                 // console.log("before clearing - " + JSON.stringify(filtered));
 
@@ -166,7 +166,8 @@ export default function AllProduct(props) {
                                     <option value="All">All</option>
                                     {categories.map(category => (
                                        (()=>{
-                                         const bgColor =  "#" + Math.floor(Math.random() * 16777251).toString(16).padStart(6, '0');
+                                        // generate random hexcode
+                                         const bgColor =  "#" + Math.floor(Math.random() * 16777251).toString(16).padStart(7, '0');
                                         //  console.log(bgColor);
                                         return (
                                             <option key={category} value={category} style={{backgroundColor:bgColor,padding:"10px",opacity:"0.5"}}>{category}</option>

@@ -21,14 +21,16 @@ export default function Register() {
 
     const [ username, setUserName] = useState('');
     const [userpassword, setUserPassword] = useState('');
+    const [userInputPassword, setUserInputPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [userInputEmail,setUserInputEmail]=useState('');
     const [contact, setContact] = useState(0);
     const [userId, setUserId] = useState(null);
     const [users, setUsers] = useState([]);
     const name = useSelector((state) => state.namebar1.value);
     // const [cartProductsDispatch, setCartProductsDispatch] = useState([]);
 
-    console.log("cart",userId);
+    console.log(userInputEmail, userInputPassword, email, userpassword);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -68,45 +70,25 @@ export default function Register() {
 
 
     const userNameFun = (e) => {
-        setUserName("")
+        
         setUserName(e.target.value);
     };
 
     const userEmailFun = (e) => {
-        setEmail("");
-        setEmail(e.target.value);
+        // setEmail("");
+        setUserInputEmail(e.target.value);
     };
+
+    const userPasswordFun=(e)=>{
+        setUserInputPassword(e.target.value)
+    }
 
     
 
     const handleRegister = (e) => {
         e.preventDefault();
-        if (email ) {
-
-            const existingUser = users.find((user) => user.email === email);
-        if (existingUser) {
-           
-            setUserId(existingUser.id);
-            setUserName(existingUser.username);
-            setUserPassword(existingUser.password);
-            setEmail(existingUser.email);
-            setContact(existingUser.phone);
-           
-        } else {
-            console.log("User not found");
-        }
-            
-        }
-    };
-
-    useEffect(
-        ()=>{
-           
-         const inputemail = document.getElementById("email").value;
-         const inputpassword = document.getElementById("password").value;
-
-
-           if( email && inputemail==email && inputpassword==userpassword ){
+        console.log(userInputEmail, email , userInputPassword, userpassword)
+        if( userInputEmail && email && (userInputEmail===email && userInputPassword===userpassword) ){
             dispatch(namebar1(username));
             dispatch(id (userId));
             dispatch(emailOfUser(email));
@@ -116,10 +98,33 @@ export default function Register() {
            } 
 
            else{
-            document.getElementById("error").value="enter valid email and password";
+            document.getElementById("error").innerHTML="enter valid email and password.<br/> Here use this john@gmail.com and m38rmF$";
            }
+        
+    };
+
+    
+    useEffect(
+        ()=>{
+           
+        //  console.log(inputpassword);
+        if (userInputEmail ) {
+
+            const existingUser = users.find((user) => user.email === userInputEmail);
+                if (existingUser) {
+                
+                    setUserId(existingUser.id);
+                    setUserName(existingUser.username);
+                    setUserPassword(existingUser.password);
+                    setEmail(existingUser.email);
+                    setContact(existingUser.phone);
+                
+                } else {
+                    console.log("User not found");
+                }
             
-        },[username]
+        }      
+        },[userInputEmail,userInputPassword]
     )
 
     return (
@@ -132,7 +137,7 @@ export default function Register() {
 
                 <div className="form-group">
                     <label>Email:</label>
-                    <input type="email" className="form-control" id="email" placeholder="Enter your Email id" name="email" value={email} onChange={userEmailFun} />
+                    <input type="email" className="form-control" id="email" placeholder="Enter your Email id" name="email" value={userInputEmail} onChange={userEmailFun} />
                 </div>
 
                 {/* <div className="form-group">
@@ -142,12 +147,12 @@ export default function Register() {
 
                 <div className="form-group">
                     <label>Password:</label>
-                    <input type="text" id="password" className="form-control" placeholder="Enter The Password" />
+                    <input type="text" id="password" className="form-control" placeholder="Enter The Password" value={userInputPassword} onChange={userPasswordFun}/>
                 </div>
                 
-                <div className="form-group">
-                <p id="error" style={{color:"red"}}></p>
-                </div>
+                {/* <div className="form-group"> */}
+                <p id="error"  style={{color:"red"}}></p>
+                {/* </div> */}
                 
 
                 <div className="btnn">
